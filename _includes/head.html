@@ -4,13 +4,15 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ff9933">
+  <link rel="icon" type="image/svg+xml" href="{{ "/favicon.svg" | relative_url }}">
 
   <!-- Begin SEO -->
   {% seo %}
   <!-- End SEO -->
 
   <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
-  <link rel="stylesheet" type="text/css" href="/css/override.css">
+  <link rel="stylesheet" type="text/css" href="{{ "/css/override.css" | relative_url }}">
 
   {% feed_meta %}
 
@@ -21,14 +23,14 @@
   {%- endif %}
 
   <!-- Begin highlight.js support -->
-  <link rel="stylesheet" href="/js/highlightjs/styles/github.css">
-  <link rel="stylesheet" href="/js/highlightjs/styles/ssms.css" />
+  <link rel="stylesheet" href="{{ "/js/highlightjs/styles/github.css" | relative_url }}">
+  <link rel="stylesheet" href="{{ "/js/highlightjs/styles/ssms.css" | relative_url }}" />
 
-  <script type="text/javascript" src="/js/highlightjs/highlight.min.js"></script>
+  <script type="text/javascript" src="{{ "/js/highlightjs/highlight.min.js" | relative_url }}"></script>
 
-  <script type="text/javascript" src="/js/highlightjs/languages/plaintext.min.js"></script>
-  <script type="text/javascript" src="/js/highlightjs/languages/powershell.min.js"></script>
-  <script type="text/javascript" src="/js/highlightjs/languages/tsql.min.js"></script>
+  <script type="text/javascript" src="{{ "/js/highlightjs/languages/plaintext.min.js" | relative_url }}"></script>
+  <script type="text/javascript" src="{{ "/js/highlightjs/languages/powershell.min.js" | relative_url }}"></script>
+  <script type="text/javascript" src="{{ "/js/highlightjs/languages/tsql.min.js" | relative_url }}"></script>
 
   <script type="text/javascript"> hljs.highlightAll(); </script>
   <!-- end highlight.js support -->

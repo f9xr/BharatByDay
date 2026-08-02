@@ -1,9 +1,204 @@
+/* ============================================================
+   BharatByDay — dark theme & Indian identity for the minima theme
+   ============================================================ */
+
+:root {
+  --bbd-bg:              #0d1117;
+  --bbd-bg-soft:         #161b22;
+  --bbd-text:            #e6edf3;
+  --bbd-muted:           #9aa4b2;
+  --bbd-border:          #21262d;
+  --bbd-saffron:         #ff9933;
+  --bbd-saffron-bright:  #ffb066;
+  --bbd-green:           #138808;
+  --bbd-navy:            #000080;
+}
+
+html {
+  background-color: var(--bbd-bg);
+}
+
+body {
+  background-color: var(--bbd-bg);
+  color: var(--bbd-text);
+}
+
+a {
+  color: var(--bbd-saffron);
+}
+
+a:hover,
+a:visited:hover {
+  color: var(--bbd-saffron-bright);
+}
+
+a:visited {
+  color: var(--bbd-saffron);
+}
+
+::selection {
+  background-color: var(--bbd-saffron);
+  color: var(--bbd-bg);
+}
+
+/* India tricolour strip across the top of the header */
+.site-header {
+  background-color: var(--bbd-bg);
+  border-top: 4px solid;
+  border-image: linear-gradient(90deg, var(--bbd-saffron) 0 33.33%, #ffffff 33.33% 66.66%, var(--bbd-green) 66.66% 100%) 1;
+  border-bottom: 1px solid var(--bbd-border);
+}
+
+.site-title {
+  color: var(--bbd-saffron) !important;
+  font-weight: 600;
+}
+
+.site-nav .page-link {
+  color: var(--bbd-text);
+}
+
+.site-nav .page-link:hover {
+  color: var(--bbd-saffron);
+  text-decoration: none;
+}
+
+.site-nav .menu-icon > svg path {
+  fill: var(--bbd-text);
+}
+
+/* Footer */
+.site-footer {
+  background-color: var(--bbd-bg-soft);
+  border-top: 1px solid var(--bbd-border);
+}
+
+.site-footer .footer-col-wrapper,
+.site-footer .contact-list,
+.site-footer .social-media-list {
+  color: var(--bbd-muted);
+}
+
+.site-footer .footer-heading {
+  color: var(--bbd-text);
+}
+
+.site-footer .social-media-list a {
+  color: var(--bbd-muted);
+}
+
+.site-footer .social-media-list a:hover {
+  color: var(--bbd-saffron);
+  text-decoration: none;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--bbd-text);
+}
+
+hr {
+  border-color: var(--bbd-border);
+}
+
+blockquote {
+  color: var(--bbd-muted);
+  border-left-color: var(--bbd-saffron);
+}
+
+table th {
+  background-color: var(--bbd-bg-soft);
+  border-color: var(--bbd-border);
+}
+
+table td {
+  border-color: var(--bbd-border);
+}
+
+/* Code + syntax highlighting */
+pre,
+code {
+  background-color: var(--bbd-bg-soft);
+  color: var(--bbd-text);
+  border-color: var(--bbd-border);
+}
+
+.highlighter-rouge .highlight {
+  background-color: var(--bbd-bg-soft);
+}
+
+/* highlight.js tokens — GitHub Dark-style palette */
+.hljs {
+  background: var(--bbd-bg-soft) !important;
+  color: var(--bbd-text) !important;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-addition { color: #ff7b72 !important; }
+
+.hljs-string,
+.hljs-regexp,
+.hljs-attribute,
+.hljs-meta .hljs-string { color: #a5d6ff !important; }
+
+.hljs-title,
+.hljs-section,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class { color: #d2a8ff !important; }
+
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet { color: #79c0ff !important; }
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion { color: var(--bbd-muted) !important; font-style: italic; }
+
+.hljs-built_in,
+.hljs-type,
+.hljs-params { color: #ffa657 !important; }
+
+/* Post listing / meta */
+.post-meta {
+  color: var(--bbd-muted);
+}
+
+.post-link {
+  color: var(--bbd-text);
+}
+
+.post-link:hover {
+  color: var(--bbd-saffron);
+}
+
+/* Homepage hero tagline */
+.hero-tagline {
+  font-size: 1.25em;
+  font-weight: 600;
+  color: var(--bbd-saffron);
+  border-left: 4px solid var(--bbd-saffron);
+  padding-left: 12px;
+  margin-bottom: 1.5em;
+}
+
+/* Launch banner image */
+.launch-banner img {
+  display: block;
+  max-width: 100%;
+  border: 1px solid var(--bbd-border);
+  border-radius: 8px;
+  margin: 1em 0;
+}
+
+/* Post navigation links */
 hr {
   margin-top: 30px;
   margin-bottom: 20px;
 }
 
-/* Post navigation links */
 .post_navi {
   display: flex;
 }
