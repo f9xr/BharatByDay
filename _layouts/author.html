@@ -1,0 +1,54 @@
+---
+layout: default
+---
+<div class="author-page">
+  <div class="author-card">
+    <img class="author-avatar" src="{{ site.logo }}" alt="F9XR Editorial Team logo" width="112" height="112">
+    <div class="author-head">
+      <h1 class="author-name">{{ page.title | escape }}</h1>
+      <p class="author-role">{{ page.role | default: "Daily India travel & heritage journalism" | escape }}</p>
+      <p class="author-bio">{{ page.bio | escape }}</p>
+      <ul class="author-social">
+        <li><a href="https://github.com/f9xr" rel="me">GitHub</a></li>
+        <li><a href="https://linkedin.com/company/f9xrteam" rel="me">LinkedIn</a></li>
+        <li><a href="https://instagram.com/f9xrteam" rel="me">Instagram</a></li>
+        <li><a href="https://www.youtube.com/@QuarterlyLIV" rel="me">YouTube</a></li>
+        <li><a href="mailto:{{ site.email }}">Email</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="author-eeat" aria-label="About the author">
+    <h2>Who writes BharatByDay</h2>
+    <p>{{ page.about | escape }}</p>
+    <ul class="eeat-list">
+      <li><strong>Experience</strong> — On-the-ground travel and heritage reporting from across India, from Rajasthan's stepwells to Nagaland's high-altitude valleys.</li>
+      <li><strong>Expertise</strong> — Research draws on primary sources: ASI records, forest and wildlife department permits, local guides, and community knowledge.</li>
+      <li><strong>Authoritativeness</strong> — Published under the F9XR editorial masthead at <a href="{{ site.org_url }}">f9xr.github.io</a>, with sources and practical logistics cited in every post.</li>
+      <li><strong>Trust</strong> — Routes, seasons and permits are verified before publishing and corrected if they change. Corrections are logged publicly via the <a href="https://github.com/f9xr/BharatByDay">open-source repository</a>.</li>
+    </ul>
+  </section>
+
+  <h2 class="post-list-heading">Latest from the Editorial Team</h2>
+  {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+  <div class="post-card-grid">
+    {%- for post in site.posts -%}
+    <article class="post-card" itemscope itemtype="http://schema.org/BlogPosting">
+      <div class="post-card-body">
+        <h3 class="post-card-title" itemprop="name headline">
+          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+        </h3>
+        <p class="post-card-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{{ post.date | date: date_format }}</time>
+        </p>
+        {%- if post.description -%}
+        <p class="post-card-desc" itemprop="description">{{ post.description | escape }}</p>
+        {%- endif -%}
+      </div>
+      <div class="post-card-foot">
+        <span class="post-card-read">Read more &rarr;</span>
+      </div>
+    </article>
+    {%- endfor -%}
+  </div>
+</div>

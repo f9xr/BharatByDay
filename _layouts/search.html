@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<div class="search-page">
+  <h1 class="page-heading">Search BharatByDay</h1>
+  <p class="page-description">Search every hidden gem we've published — by destination, region, or theme.</p>
+
+  <form class="search-form search-page-form" role="search" method="get" action="{{ "/search/" | relative_url }}">
+    <input type="search" name="q" id="search-input" placeholder="Try 'stepwell', 'trekking', 'Nagaland'…" autofocus autocomplete="off" aria-label="Search posts">
+    <button type="submit" class="btn">Search</button>
+  </form>
+
+  <p id="search-count" class="search-count"></p>
+  <div id="search-results" class="search-results" data-index="{{ "/search.json" | relative_url }}"></div>
+</div>
+
+<script src="{{ "/js/search.js" | relative_url }}"></script>

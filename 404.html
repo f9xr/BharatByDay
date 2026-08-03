@@ -1,9 +1,18 @@
 ---
 layout: default
-title: Page not found
+title: 404 — Page not found
 permalink: /404.html
+sitemap: false
 ---
+<div class="not-found">
+  <p class="nf-code" aria-hidden="true">404</p>
+  <h1>This corner of Bharat hasn't been discovered yet</h1>
+  <p>The page you're looking for has wandered off the map. Head back to the <a href="{{ "/" | relative_url }}">homepage</a>, or browse the <a href="{{ "/archive.html" | relative_url }}">archive</a> of daily gems.</p>
 
-<h1>404 — Page not found</h1>
+  <form class="search-form nf-search" role="search" action="{{ "/search/" | relative_url }}" method="get">
+    <input type="search" name="q" placeholder="Search hidden gems…" aria-label="Search posts">
+    <button type="submit" class="btn">Search</button>
+  </form>
 
-<p>This corner of Bharat hasn't been discovered yet. Head back to the <a href="{{ "/" | relative_url }}">homepage</a>, or browse the <a href="{{ "/archive.html" | relative_url }}">archive</a> of daily gems.</p>
+  <p class="nf-back"><a href="{{ "/" | relative_url }}">&larr; Back to BharatByDay</a></p>
+</div>
