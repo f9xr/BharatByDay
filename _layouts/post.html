@@ -42,9 +42,39 @@ layout: default
 
   {%- if page.image -%}
   <figure class="post-image" aria-label="Featured image">
-    <img src="{{ page.image }}" alt="{{ page.title | escape }}" loading="eager">
+    <img src="{{ page.image }}" alt="{{ page.title | escape }}" loading="eager" decoding="async">
   </figure>
   {%- endif -%}
+
+  <!-- Article tools -->
+  <div class="post-controls" role="toolbar" aria-label="Article tools">
+    <div class="controls-group">
+      <button type="button" id="font-dec" class="ctl-btn" title="Decrease font size" aria-label="Decrease font size">A&minus;</button>
+      <button type="button" id="font-inc" class="ctl-btn" title="Increase font size" aria-label="Increase font size">A+</button>
+      <button type="button" id="listen-btn" class="ctl-btn" title="Listen to this article" aria-label="Listen to this article">&#128266; Listen</button>
+      <button type="button" id="pdf-btn" class="ctl-btn" title="Download this article as PDF" aria-label="Download as PDF">&#8681; PDF</button>
+      <button type="button" id="post-copy-link" class="ctl-btn" title="Copy link to this article" aria-label="Copy link to this article">&#128279; Copy link</button>
+    </div>
+  </div>
+
+  <!-- TL;DR -->
+  <details class="tldr-box" open>
+    <summary><strong>TL;DR</strong> &mdash; At a glance</summary>
+    <p>{{ page.tldr | default: page.description | default: "One unique spot in India to explore, every single day." | escape }}</p>
+  </details>
+
+  <!-- AI summarize -->
+  <div class="ai-summarize" aria-label="Summarize this article with AI">
+    <span class="ai-label">Summarize with:</span>
+    {%- assign _pageurl = page.url | absolute_url -%}
+    {%- assign _prompt = "Please provide a concise, well-structured summary of this article: " | append: _pageurl -%}
+    {%- assign _q = _prompt | url_encode -%}
+    <a class="ai-btn" href="https://chatgpt.com/?q={{ _q }}" target="_blank" rel="noopener nofollow">ChatGPT</a>
+    <a class="ai-btn" href="https://claude.ai/new?q={{ _q }}" target="_blank" rel="noopener nofollow">Claude</a>
+    <a class="ai-btn" href="https://gemini.google.com/?q={{ _q }}" target="_blank" rel="noopener nofollow">Gemini</a>
+    <a class="ai-btn" href="https://grok.com/?q={{ _q }}" target="_blank" rel="noopener nofollow">Grok</a>
+    <a class="ai-btn" href="https://copilot.microsoft.com/?q={{ _q }}" target="_blank" rel="noopener nofollow">Copilot</a>
+  </div>
 
   <div class="share-links">
     {% include sharelinks.html %}
@@ -54,7 +84,61 @@ layout: default
     {{ content }}
   </div>
 
+  {% include alsoread.html %}
+
+  <!-- Further Reading -->
+  <section class="further-reading" aria-label="Further reading">
+    <h2>Further Reading</h2>
+    <ul class="further-reading-list">
+      {%- if page.further_reading -%}
+        {%- for item in page.further_reading -%}
+        <li><a href="{{ item.url }}" {% if item.url contains "http" %}target="_blank" rel="noopener nofollow"{% endif %}>{{ item.title }}</a></li>
+        {%- endfor -%}
+      {%- endif -%}
+      {%- assign frCount = 0 -%}
+      {%- for p in site.posts -%}
+        {%- if p.url != page.url -%}
+        <li><a href="{{ p.url | relative_url }}">{{ p.title | escape }}</a></li>
+        {%- assign frCount = frCount | plus: 1 -%}
+        {%- endif -%}
+        {%- if frCount >= 3 -%}{%- break -%}{%- endif -%}
+      {%- endfor -%}
+      <li><a href="{{ "/archive.html" | relative_url }}">Browse the full archive of daily gems</a></li>
+    </ul>
+  </section>
+
+  <div class="share-links share-links-bottom">
+    {% include sharelinks.html %}
+  </div>
+
+  <!-- Keywords -->
+  {%- if page.tags -%}
+  <section class="post-legal" aria-label="Keywords">
+    <h2>Keywords</h2>
+    <p class="keywords">
+      {%- for tag in page.tags -%}
+      <a href="{{ "/archive.html" | relative_url }}#{{ tag | slugify }}" rel="tag">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+      {%- endfor -%}
+    </p>
+  </section>
+  {%- endif -%}
+
   {% include navlinks.html %}
+
+  <!-- Copyright -->
+  <section class="post-legal" aria-label="Copyright">
+    <h2>Copyright</h2>
+    <p>© 2026 <a href="{{ site.org_url }}">F9XR Team</a>. This is an open-access article distributed under the terms of the <a href="https://creativecommons.org/licenses/by/4.0" rel="license">Creative Commons Attribution License (CC BY)</a>. The use, distribution or reproduction in other forums is permitted, provided the original author(s) and the copyright owner(s) are credited and that the original publication in this journal is cited, in accordance with accepted academic practice. No use, distribution or reproduction is permitted which does not comply with these terms.</p>
+  </section>
+
+  <!-- Disclaimer -->
+  <section class="post-legal" aria-label="Disclaimer">
+    <h2>Disclaimer</h2>
+    <p>All claims expressed in this article are solely those of the authors and do not necessarily represent those of their affiliated organizations, or those of the publisher, the editors and the reviewers. Any product that may be evaluated in this article or claim that may be made by its manufacturer is not guaranteed or endorsed by the publisher.</p>
+  </section>
+
+  <!-- Author Box -->
+  {% include authorbox.html %}
 
   <!-- Related Articles -->
   <section class="related-posts" aria-label="Related articles">
@@ -88,30 +172,6 @@ layout: default
     </div>
   </section>
 
-  <!-- Keywords -->
-  {%- if page.tags -%}
-  <section class="post-legal" aria-label="Keywords">
-    <h2>Keywords</h2>
-    <p class="keywords">
-      {%- for tag in page.tags -%}
-      <a href="{{ "/archive.html" | relative_url }}#{{ tag | slugify }}" rel="tag">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
-      {%- endfor -%}
-    </p>
-  </section>
-  {%- endif -%}
-
-  <!-- Copyright -->
-  <section class="post-legal" aria-label="Copyright">
-    <h2>Copyright</h2>
-    <p>© 2026 <a href="{{ site.org_url }}">F9XR Team</a>. This is an open-access article distributed under the terms of the <a href="https://creativecommons.org/licenses/by/4.0" rel="license">Creative Commons Attribution License (CC BY)</a>. The use, distribution or reproduction in other forums is permitted, provided the original author(s) and the copyright owner(s) are credited and that the original publication in this journal is cited, in accordance with accepted academic practice. No use, distribution or reproduction is permitted which does not comply with these terms.</p>
-  </section>
-
-  <!-- Disclaimer -->
-  <section class="post-legal" aria-label="Disclaimer">
-    <h2>Disclaimer</h2>
-    <p>All claims expressed in this article are solely those of the authors and do not necessarily represent those of their affiliated organizations, or those of the publisher, the editors and the reviewers. Any product that may be evaluated in this article or claim that may be made by its manufacturer is not guaranteed or endorsed by the publisher.</p>
-  </section>
-
   <!-- Comments -->
   <section class="comments" aria-label="Comments">
     <h2>Comments</h2>
@@ -133,6 +193,7 @@ layout: default
   "@type": "BlogPosting",
   "mainEntityOfPage": { "@type": "WebPage", "@id": "{{ page.url | absolute_url }}" },
   "headline": {{ page.title | jsonify }},
+  {% if page.image %}"image": "{{ page.image }}",{% endif %}
   {% if page.description %}"description": {{ page.description | jsonify }},{% endif %}
   "datePublished": "{{ page.date | date_to_xmlschema }}",
   "dateModified": "{{ page.date | date_to_xmlschema }}",

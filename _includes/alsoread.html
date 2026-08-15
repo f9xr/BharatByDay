@@ -1,0 +1,13 @@
+<div id="also-read-pool" hidden>
+  {%- assign alsoCount = 0 -%}
+  {%- for p in site.posts -%}
+    {%- if p.url != page.url -%}
+    <div class="also-read-card">
+      <span class="also-read-label">Also Read</span>
+      <a class="also-read-link" href="{{ p.url | relative_url }}">{{ p.title | escape }}</a>
+    </div>
+    {%- assign alsoCount = alsoCount | plus: 1 -%}
+    {%- endif -%}
+    {%- if alsoCount >= 3 -%}{%- break -%}{%- endif -%}
+  {%- endfor -%}
+</div>

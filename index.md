@@ -21,7 +21,7 @@ We believe that exploring this beautiful country shouldn't be limited to major t
 We launch on **August 15, 2026**, as India marks its **80th Independence Day** — a national holiday of flag-hoisting ceremonies, cultural programs, and the Prime Minister's national address. A fitting day to begin our journey through the Bharat the guidebooks miss.
 
 <div class="launch-banner">
-  <img src="https://rashtraparv.mod.gov.in/files/styles/events_webp/public/event_image/2025.png.webp" alt="India's 80th Independence Day celebrations">
+  <img src="https://rashtraparv.mod.gov.in/files/styles/events_webp/public/event_image/2025.png.webp" alt="India's 80th Independence Day celebrations" loading="lazy" decoding="async">
 </div>
 
 ## Why you can trust every post
