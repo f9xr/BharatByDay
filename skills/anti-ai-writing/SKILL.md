@@ -1,3 +1,8 @@
+---
+name: anti-ai-writing
+description: Write and rewrite content in the F9XR human voice. Use this skill when drafting or editing any F9XR content — blog posts, pages, announcements, case studies, marketing copy, social posts — to strip out AI-isms, banned vocabulary, hype language, and fatal constructions so text reads like a sharp human wrote it. Enforces short paragraphs, contractions, specific detail, direct address, and a banned-word list.
+---
+
 # VOICE DNA
 
 Source of truth for my writing voice. Apply with judgment. Spirit over letter. Always.

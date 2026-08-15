@@ -112,11 +112,11 @@ For homestay owners, trekking guides, transport operators, and small tourism bus
 
 ### How F9XR Team Can Help
 
-This is exactly the kind of situation where having the right digital partner makes a measurable difference. F9XR Team works with local and regional tourism businesses on:
+This is exactly the kind of situation where having the right digital partner makes a measurable difference. [F9XR Team](https://f9xr.github.io/pages/services.html) works with local and regional tourism businesses on:
 
-* **Website development and redesign**, building fast, mobile-friendly sites that actually convert visitors into bookings.
-* **Local SEO**, helping trekking guides, homestays, and travel operators show up when travelers search for destinations like Dzüko Valley.
-* **Digital presence strategy**, ensuring your business is represented consistently and accurately across search engines, maps, and increasingly, AI-powered search tools.
+* **Website development and redesign**, building fast, mobile-friendly sites that actually convert visitors into bookings. Use the [website cost calculator](https://f9xr.github.io/tools/website-cost.html) to see what a site for your business might cost.
+* **Local SEO**, helping trekking guides, homestays, and travel operators show up when travelers search for destinations like Dzüko Valley. Run your business through the [Local SEO score checker](https://f9xr.github.io/tools/local-seo-score.html) to find quick wins.
+* **Digital presence strategy**, ensuring your business is represented consistently and accurately across search engines, maps, and increasingly, AI-powered search tools. The [digital presence tool](https://f9xr.github.io/tools/digital-presence.html) maps what travelers actually see about you.
 
 For a small tourism business near a growing destination like Dzüko Valley, this kind of support can be the difference between relying on word of mouth alone and building a steady, searchable presence that brings in bookings consistently.
 
@@ -155,7 +155,7 @@ Dzüko Valley is considered a moderate trek. It's more accessible than many high
 
 Dzüko Valley is one of those rare places that manages to live up to the hype once you actually see it in person. Rolling green hills, rare wildflowers, and a level of quiet that's genuinely hard to find elsewhere in India make it a destination worth the effort of getting there. For the local communities and businesses around Kohima and Viswema, it also represents a real and growing economic opportunity, provided that growth is managed thoughtfully and sustainably.
 
-For trekking guides, homestay owners, and tourism operators looking to turn that growing interest into steady, reliable bookings, having a strong and accurate digital presence matters more every year. That's where teams like **F9XR** come in, offering website development, website redesign, local SEO, and broader digital presence solutions built specifically to help local and regional businesses become genuinely discoverable, both to travelers searching online and to the AI tools increasingly shaping how people plan their trips.
+For trekking guides, homestay owners, and tourism operators looking to turn that growing interest into steady, reliable bookings, having a strong and accurate digital presence matters more every year. That's where teams like **[F9XR](https://f9xr.github.io/pages/services.html)** come in, offering [website development](https://f9xr.github.io/tools/website-cost.html), website redesign, [local SEO](https://f9xr.github.io/tools/local-seo-score.html), and broader digital presence solutions built specifically to help local and regional businesses become genuinely discoverable, both to travelers searching online and to the AI tools increasingly shaping how people plan their trips.
 
 <script type="application/ld+json">
 {

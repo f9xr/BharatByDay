@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>ExhaleWell SEO Mind Map — Gaps + Linking</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:#fff;touch-action:none;user-select:none;-webkit-user-select:none}
+#bg{position:fixed;inset:0;z-index:0;background-image:radial-gradient(#d1d5db 1px,transparent 1px);background-size:28px 28px}
+#vp{position:fixed;inset:0;z-index:1;overflow:hidden}
+#world{position:absolute;left:0;top:0;transform-origin:0 0}
+#svg{position:absolute;left:0;top:0;width:1px;height:1px;overflow:visible;z-index:1}
+
+.nd{position:absolute;z-index:5;cursor:pointer;transition:filter .15s,transform .15s}
+.nd:hover{z-index:50;filter:brightness(1.02);transform:scale(1.04)}
+
+.nd-root{width:140px;height:70px;border-radius:20px;background:linear-gradient(135deg,#1e293b,#334155);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(30,41,59,.25),0 0 0 3px #e2e8f0;z-index:20}
+.nd-root h2{font-size:17px;font-weight:800;color:#fff;letter-spacing:-.5px}
+.nd-root span{font-size:9px;color:#94a3b8;letter-spacing:1.5px;margin-top:2px}
+
+.nd-silo{height:50px;min-width:105px;border-radius:25px;padding:0 20px;display:flex;align-items:center;gap:8px;z-index:15;box-shadow:0 4px 20px rgba(0,0,0,.12)}
+.nd-silo b{font-size:15px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+.nd-silo em{font-style:normal;font-size:10px;color:rgba(255,255,255,.75);background:rgba(0,0,0,.15);border-radius:10px;padding:2px 8px;font-weight:700}
+
+.nd-pillar{min-width:150px;padding:10px 16px;background:#fff;border-radius:12px;text-align:center;z-index:12;box-shadow:0 3px 16px rgba(0,0,0,.08)}
+.nd-pillar .tag{font-size:8px;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+.nd-pillar .nm{font-size:12px;font-weight:700;color:#1e293b;margin-top:3px;line-height:1.3}
+
+.nd-hub{min-width:115px;padding:10px 14px;background:#fff;border-radius:12px;text-align:center;z-index:10;box-shadow:0 3px 14px rgba(0,0,0,.07)}
+.nd-hub .nm{font-size:13px;font-weight:700}
+.nd-hub .ct{font-size:10px;color:#64748b;margin-top:2px}
+.nd-hub .lk{display:inline-block;font-size:8px;font-weight:700;padding:3px 8px;border-radius:5px;margin-top:4px}
+.nd-hub .gaps-badge{display:inline-block;font-size:8px;font-weight:700;padding:2px 7px;border-radius:5px;margin-top:3px;background:#dcfce7;color:#15803d;margin-left:3px}
+
+/* Existing post node */
+.nd-post{max-width:155px;padding:8px 11px;background:#fff;border-radius:10px;z-index:6;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.nd-post .row{display:flex;align-items:flex-start;gap:5px}
+.nd-post .dot{width:7px;height:7px;border-radius:50%;margin-top:3px;flex-shrink:0}
+.nd-post .nm{font-size:11px;font-weight:500;color:#1e293b;line-height:1.35}
+.nd-post .go{font-size:8px;font-weight:700;margin-top:3px;display:block}
+.nd-post .wrn{font-size:8px;color:#92400e;margin-top:3px;background:#fef3c7;padding:2px 6px;border-radius:4px;display:inline-block}
+/* Link pills on posts */
+.nd-post .link-pills{display:flex;flex-wrap:wrap;gap:2px;margin-top:4px}
+.nd-post .lp{font-size:7px;font-weight:700;padding:1px 5px;border-radius:3px;background:#eff6ff;color:#2563eb;white-space:nowrap}
+
+/* GAP node — suggested new content */
+.nd-gap{max-width:155px;padding:8px 11px;border-radius:10px;z-index:6;background:#f0fdf4;border:2px dashed #22c55e80;box-shadow:0 2px 10px rgba(34,197,94,.1)}
+.nd-gap .row{display:flex;align-items:flex-start;gap:5px}
+.nd-gap .plus{width:16px;height:16px;border-radius:50%;background:#22c55e;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;line-height:1}
+.nd-gap .nm{font-size:11px;font-weight:600;color:#15803d;line-height:1.35}
+.nd-gap .kw{font-size:8px;color:#4ade80;font-family:monospace;margin-top:3px;display:block}
+.nd-gap .pri{font-size:7px;font-weight:800;padding:2px 6px;border-radius:4px;margin-top:3px;display:inline-block;text-transform:uppercase;letter-spacing:.5px}
+.nd-gap .pri-high{background:#fef2f2;color:#dc2626}
+.nd-gap .pri-med{background:#fffbeb;color:#d97706}
+.nd-gap .pri-low{background:#f0fdf4;color:#16a34a}
+
+#bar{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid #e5e7eb;padding:10px 14px}
+#bar h1{font-size:14px;font-weight:800;color:#0f172a;letter-spacing:-.3px}
+#bar p{font-size:10px;color:#64748b;line-height:1.5;margin-top:2px}
+#bar .legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:5px;align-items:center}
+#bar .legend .it{display:flex;align-items:center;gap:3px;font-size:9px;color:#64748b}
+
+.ctrl{position:fixed;z-index:200;display:flex;gap:5px}
+.ctrl button{width:44px;height:44px;border-radius:12px;border:1.5px solid #e2e8f0;background:#fff;font-size:20px;font-weight:600;color:#334155;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.ctrl button:active{background:#f1f5f9}
+#zCtrl{bottom:20px;right:14px;flex-direction:column}
+#zLbl{position:fixed;bottom:26px;left:14px;z-index:200;background:#fff;border:1.5px solid #e2e8f0;border-radius:8px;padding:5px 12px;font-size:11px;color:#64748b;font-weight:700;box-shadow:0 1px 6px rgba(0,0,0,.05)}
+
+/* Toggle for gaps */
+#gapToggle{position:fixed;top:auto;bottom:76px;right:14px;z-index:200;background:#22c55e;color:#fff;border:none;border-radius:12px;padding:8px 12px;font-size:11px;font-weight:700;cursor:pointer;box-shadow:0 3px 12px rgba(34,197,94,.3);display:flex;align-items:center;gap:5px}
+#gapToggle.off{background:#94a3b8}
+</style>
+</head>
+<body>
+<div id="bg"></div>
+
+<div id="bar">
+  <h1>ExhaleWell.com — SEO Architecture + Gap Analysis</h1>
+  <p>Tap <b>silo</b> → branches · Tap <b>hub</b> → posts + suggested gaps · Tap <b>post</b> → open page</p>
+  <div class="legend">
+    <div class="it"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#7c3aed"></span> Existing</div>
+    <div class="it"><span style="display:inline-block;width:10px;height:10px;border-radius:5px;border:2px dashed #22c55e;background:#f0fdf4"></span> <b style="color:#15803d">NEW Gap</b></div>
+    <div class="it"><span style="display:inline-block;width:14px;height:9px;border-radius:3px;background:#eff6ff;font-size:6px;color:#2563eb;text-align:center;line-height:9px;font-weight:700">→</span> Link targets</div>
+    <div class="it"><span style="color:#f59e0b;font-weight:700">⚠</span> URL issue</div>
+  </div>
+</div>
+
+<div id="vp"><div id="world"><svg id="svg"></svg></div></div>
+
+<div class="ctrl" id="zCtrl">
+  <button onclick="Z(1)">+</button>
+  <button onclick="Z(-1)">−</button>
+  <button onclick="RESET()">↺</button>
+</div>
+<div id="zLbl">42%</div>
+<button id="gapToggle" onclick="toggleGaps()">✦ Gaps ON</button>
+
+<script>
+const B="https://www.exhalewell.com";
+let showGaps=true;
+
+const SL=[
+{id:"thca",n:"THCA",c:"#16a34a",p:{t:"What Is THCA",u:"/blog/thca/what-is-thca/"},b:[
+{h:"Flower",lk:"→ Pillar + Flower Products",ps:[
+{t:"Best Flower Beginners",u:"/blog/flower/best-thca-flower-for-beginners/",ln:["Pillar","Flower Products"]},
+{t:"Strongest Strains",u:"/blog/thca/strongest-thca-strains/",ln:["Pillar","Flower Products"]},
+{t:"Strains for Pain",u:"/blog/thca/thca-strains-for-pain/",ln:["Pillar","Flower Products","Dosing Guide"]},
+{t:"Exotic vs Super Exotic",u:"/blog/thca/exotic-vs-super-exotic-thca-flower/",ln:["Pillar","Flower Products"]},
+{t:"Indoor Grown",u:"/blog/thca/indoor-grown-thca-flower/",ln:["Pillar","Flower Products"]},
+{t:"Shipped to Door",u:"/blog/thca/thca-flower-shipped-door/",ln:["Pillar","Shop Page"]},
+{t:"How to Store",u:"/how-to-store-thca-flower/",ln:["Pillar","Flower Products"]},
+{t:"How to Smoke",u:"/blog/thca/how-to-smoke-thca-flower/",ln:["Pillar","Pre-Roll Products"]},
+{t:"Flower Benefits",u:"/blog/delta-8-flower-101/thca-flower-benefits/",ln:["Pillar"],w:"Wrong silo /d8/"},
+],gaps:[
+{t:"THCA Flower vs CBD Flower",kw:"thca flower vs cbd flower",pri:"high"},
+{t:"THCA Flower Smell & Taste Guide",kw:"what does thca flower smell like",pri:"med"},
+{t:"Best THCA Flower Brands 2026",kw:"best thca flower brands",pri:"high"},
+]},
+{h:"Pre-Rolls",lk:"→ Pillar + Pre-Roll Products",ps:[
+{t:"About Pre-Rolls",u:"/about-thca-pre-rolls/",ln:["Pillar","Pre-Roll Products"],w:"Orphan URL"},
+{t:"Pre-Rolls vs Flower",u:"/thca-pre-rolls-vs-thca-flower/",ln:["Pillar","Flower Hub","Pre-Roll Products"]},
+{t:"THCA vs CBD Pre-Rolls",u:"/thca-pre-rolls-vs-cbd-pre-rolls/",ln:["Pillar","CBD Silo","Pre-Roll Products"]},
+{t:"How to Smoke Pre-Roll",u:"/how-to-smoke-a-pre-rolled-joint/",ln:["Pillar","Pre-Roll Products"]},
+],gaps:[
+{t:"Best THCA Pre-Rolls Online",kw:"best thca pre rolls",pri:"high"},
+{t:"How Long Does a THCA Pre-Roll Last",kw:"thca pre roll duration",pri:"med"},
+]},
+{h:"Vapes & Carts",lk:"→ Pillar + Cart Products",ps:[
+{t:"Best THCA Vape",u:"/blog/best-thca-vape/",ln:["Pillar","Vape Products","Vaping Silo"]},
+{t:"Vape vs Flower",u:"/blog/thca/thca-vape-vs-thca-flower/",ln:["Pillar","Flower Hub","Vape Products"]},
+{t:"Cart Tips",u:"/blog/thca/thca-cart-tips/",ln:["Pillar","Cart Products"]},
+{t:"Budget Carts <$40",u:"/blog/thca/best-budget-thca-carts-under-40/",ln:["Pillar","Cart Products","Shop"]},
+],gaps:[
+{t:"THCA Carts vs D8 Carts",kw:"thca carts vs delta 8 carts",pri:"high"},
+{t:"Are THCA Carts Safe?",kw:"are thca carts safe",pri:"med"},
+]},
+{h:"Concentrates",lk:"→ Pillar + Concentrate Products",ps:[
+{t:"THCA Live Resin",u:"/blog/what-is-thca-live-resin/",ln:["Pillar","LR Products","Live Resin Silo"]},
+{t:"THC Diamonds",u:"/blog/what-are-thc-diamonds/",ln:["Pillar","Diamond Products"]},
+{t:"THC Crystals",u:"/blog/what-are-thc-crystals/",ln:["Pillar"],w:"Cannibalization w/ Diamonds"},
+{t:"Dabs Beginners",u:"/blog/thca/thca-dabs-for-beginners/",ln:["Pillar","Concentrate Products"]},
+{t:"THCA Powder",u:"/blog/thca/how-to-use-thca-powder/",ln:["Pillar"]},
+],gaps:[
+{t:"THCA Concentrates Buying Guide",kw:"best thca concentrates",pri:"high"},
+{t:"THCA Wax vs Shatter vs Budder",kw:"thca wax vs shatter",pri:"med"},
+]},
+{h:"Legal & Effects",lk:"→ Pillar + All Products",ps:[
+{t:"Is THCA Legal?",u:"/blog/is-thca-legal/",ln:["Pillar","All Products","Shop"]},
+{t:"Get You High?",u:"/blog/does-thca-get-you-high/",ln:["Pillar","Dosing Guide"]},
+{t:"Safe to Smoke?",u:"/blog/is-thca-safe-to-smoke/",ln:["Pillar","Flower Hub"]},
+{t:"Drug Test",u:"/blog/does-thca-show-up-in-a-drug-test/",ln:["Pillar","How Long in System"]},
+{t:"How Long in System",u:"/blog/thca/how-long-does-thca-stay-in-system/",ln:["Pillar","Drug Test Post"]},
+{t:"Dosing Guide",u:"/blog/thca/thca-dosing/",ln:["Pillar","All Products"]},
+{t:"THCA vs Delta 9",u:"/blog/thca-vs-delta-9/",ln:["Pillar","D9 Pillar"]},
+{t:"THCA vs Weed",u:"/blog/thca-vs-weed/",ln:["Pillar"]},
+{t:"THCA Near Me",u:"/blog/thca-near-me/",ln:["Pillar","Shop Page"]},
+{t:"Dispensary",u:"/blog/thca/thca-dispensary/",ln:["Pillar","Shop Page"]},
+],gaps:[
+{t:"THCA Legal by State [Table]",kw:"thca legal states map",pri:"high"},
+{t:"THCA Side Effects",kw:"thca side effects",pri:"high"},
+{t:"THCA vs THC Difference Explained",kw:"thca vs thc",pri:"high"},
+{t:"THCA for Sleep",kw:"thca for sleep",pri:"med"},
+{t:"THCA Tolerance Guide",kw:"thca tolerance",pri:"low"},
+]},
+]},
+
+{id:"d8",n:"Delta 8",c:"#7c3aed",p:{t:"What Is Delta 8",u:"/blog/delta-8-101/what-is-delta-8-thc/"},b:[
+{h:"D8 Gummies",lk:"→ Pillar + D8 Gummy Products",ps:[
+{t:"Best D8 Gummies",u:"/blog/delta-8-101/best-delta-8-gummies/",ln:["Pillar","D8 Gummy Products"]},
+{t:"How Strong",u:"/blog/how-strong-are-delta-8-gummies/",ln:["Pillar","Dosing","D8 Gummy Products"]},
+{t:"Get You High?",u:"/blog/can-delta-8-gummies-get-you-high/",ln:["Pillar","Effects Hub"]},
+{t:"500mg Guide",u:"/blog/delta-8-101/500mg-thc/",ln:["Pillar","D8 Gummy Products"]},
+{t:"Gummies vs Vapes",u:"/blog/delta-8-101/delta-8-gummies-vs-delta-8-vapes/",ln:["Pillar","Vape Hub","Gummy Products"]},
+],gaps:[
+{t:"D8 Gummies for Beginners",kw:"delta 8 gummies for beginners",pri:"high"},
+{t:"D8 Gummies Dosage Chart",kw:"delta 8 gummies dosage",pri:"high"},
+{t:"D8 Gummies vs D9 Gummies",kw:"delta 8 vs delta 9 gummies",pri:"high"},
+]},
+{h:"D8 Vaping",lk:"→ Pillar + D8 Vape Products",ps:[
+{t:"Best Cart Strains",u:"/blog/delta-8-vaping/best-delta-8-cart-strains/",ln:["Pillar","D8 Cart Products"]},
+{t:"Weed Pen Price",u:"/blog/delta-8-vaping/weed-pen-price/",ln:["Pillar","Vape Products","Vaping Silo"]},
+{t:"Fix Clogged Cart",u:"/blog/delta-8-vaping/how-to-fix-a-clogged-vape-cartridge/",ln:["Pillar","Vaping Silo"]},
+{t:"How to Vape D8",u:"/blog/delta-8-101/how-to-vape-d8-properly/",ln:["Pillar","D8 Vape Products"]},
+],gaps:[
+{t:"Best D8 Disposable Vapes 2026",kw:"best delta 8 disposable",pri:"high"},
+]},
+{h:"D8 Flower",lk:"→ Pillar + D8 Flower Products",ps:[
+{t:"Strongest D8 Flower",u:"/blog/delta-8-flower-101/strongest-d8-flower/",ln:["Pillar","D8 Flower Products"]},
+{t:"D8 vs CBD Flower",u:"/blog/delta-8-101/d8-flower-vs-cbd-flower/",ln:["Pillar","CBD Silo"]},
+{t:"Beginner Strains",u:"/blog/delta-8-flower-101/d8-strains-for-beginners/",ln:["Pillar","D8 Flower Products"]},
+],gaps:[
+{t:"How to Smoke D8 Flower",kw:"how to smoke delta 8 flower",pri:"med"},
+]},
+{h:"D8 Effects & Legal",lk:"→ Pillar",ps:[
+{t:"How Long Lasts",u:"/blog/delta-8-101/how-long-does-delta-8-last/",ln:["Pillar","D8 in System"]},
+{t:"D8 in System",u:"/blog/delta-8-101/how-long-does-delta-8-stay-in-your-system/",ln:["Pillar","Drug Test"]},
+{t:"Is D8 Safe?",u:"/blog/delta-8-101/is-delta-8-safe/",ln:["Pillar"]},
+{t:"Tolerance Break",u:"/blog/delta-8-101/d-8-tolerance-break/",ln:["Pillar","Microdose Post"]},
+{t:"Microdose D8",u:"/blog/delta-8-101/microdose-d8/",ln:["Pillar","D8 Gummy Products"]},
+{t:"D8 Anxiety",u:"/delta-8-for-anxiety/",ln:["Pillar"],w:"Orphan URL"},
+{t:"Legal Texas",u:"/blog/is-delta-8-legal-in-texas/",ln:["Pillar","Is THCA Legal"]},
+{t:"Fly with D8?",u:"/blog/can-you-fly-with-delta-8/",ln:["Pillar","Fly Edibles Post"]},
+{t:"Mixing D8+D9",u:"/blog/mixing-delta-8-and-delta-9/",ln:["Pillar","D9 Pillar"]},
+],gaps:[
+{t:"D8 Legal by State [50-State Guide]",kw:"is delta 8 legal in my state",pri:"high"},
+{t:"D8 Side Effects & What to Do",kw:"delta 8 side effects",pri:"high"},
+{t:"D8 vs D9: Complete Comparison",kw:"delta 8 vs delta 9",pri:"high"},
+{t:"D8 for Pain Relief",kw:"delta 8 for pain",pri:"med"},
+]},
+]},
+
+{id:"d9",n:"Delta 9",c:"#dc2626",p:{t:"Delta 9 vs THC",u:"/blog/delta-9-vs-thc/"},b:[
+{h:"D9 Gummies",lk:"→ Pillar + D9 Gummy Products",ps:[
+{t:"Best D9 Gummies",u:"/blog/best-delta-9-gummies/",ln:["Pillar","D9 Gummy Products"]},
+{t:"Best 2026",u:"/blog/delta-9-edibles/best-delta-9-gummies-of-2026/",ln:["Pillar"],w:"Cannibalization"},
+{t:"Near Me",u:"/blog/delta-9-gummies-near-me/",ln:["Pillar","Shop"]},
+{t:"How Long Last",u:"/blog/how-long-do-delta-9-gummies-last/",ln:["Pillar","Dosing Guide"]},
+{t:"Gummies Effects",u:"/blog/delta-9-edibles-101/thc-gummies-effects/",ln:["Pillar","D9 Products"]},
+{t:"Gummies in System",u:"/blog/delta-9-edibles/how-long-do-thc-gummies-stay-in-your-system/",ln:["Pillar","Drug Test"]},
+],gaps:[
+{t:"D9 Gummies Dosage Guide",kw:"delta 9 gummies dosage chart",pri:"high"},
+{t:"D9 Gummies for Sleep",kw:"delta 9 gummies for sleep",pri:"high"},
+{t:"D9 Gummies for Beginners",kw:"delta 9 edibles first time",pri:"high"},
+{t:"Are D9 Gummies Legal?",kw:"are delta 9 gummies legal",pri:"high"},
+]},
+{h:"D9 Info",lk:"→ Pillar",ps:[
+{t:"D9 in System",u:"/blog/delta-9-101/how-long-does-delta-9-stay-in-your-system/",ln:["Pillar","Drug Test"]},
+{t:"Is D9 Synthetic?",u:"/blog/is-delta-9-synthetic/",ln:["Pillar"]},
+{t:"D9 Sex Drive",u:"/blog/delta-9-thc-and-sex-drive/",ln:["Pillar","Libido Products","Wellness Hub"]},
+{t:"D11 vs D9",u:"/blog/delta-11-vs-delta-9/",ln:["Pillar","Cannabinoids Silo"]},
+],gaps:[
+{t:"What Is Delta 9 THC? [Full Guide]",kw:"what is delta 9",pri:"high"},
+{t:"D9 Side Effects",kw:"delta 9 side effects",pri:"med"},
+]},
+]},
+
+{id:"thcp",n:"THCp",c:"#ea580c",p:{t:"What Is THCp",u:"/blog/what-is-thcp/"},b:[
+{h:"THCp Guides",lk:"→ Pillar + THCp Products",ps:[
+{t:"Get You High?",u:"/blog/does-thcp-get-you-high/",ln:["Pillar","THCp Products"]},
+{t:"How Strong?",u:"/blog/how-strong-is-thcp/",ln:["Pillar","THCp Products"]},
+{t:"Is THCp Legal?",u:"/blog/is-thcp-legal/",ln:["Pillar"]},
+{t:"THCp vs THC",u:"/blog/thcp-vs-thc/",ln:["Pillar","D9 Pillar"]},
+{t:"THCp vs THCA",u:"/blog/thcp-vs-thca/",ln:["Pillar","THCA Pillar"]},
+{t:"THCp vs D8",u:"/blog/thcp-vs-delta-8/",ln:["Pillar","D8 Pillar"]},
+{t:"Best THCp Gummies",u:"/blog/best-thcp-gummies/",ln:["Pillar","THCp Gummy Products"]},
+],gaps:[
+{t:"THCp Dosage Guide",kw:"thcp dosage",pri:"high"},
+{t:"THCp Side Effects",kw:"thcp side effects",pri:"med"},
+{t:"THCp vs D9: Which Is Stronger?",kw:"thcp vs delta 9",pri:"high"},
+]},
+]},
+
+{id:"vape",n:"Vaping",c:"#0284c7",p:{t:"Weed Vape Guide",u:"/blog/vaping/weed-vape-guide/"},b:[
+{h:"Vape Guides",lk:"→ Pillar + All Vape Products",ps:[
+{t:"Use Vape Pen",u:"/blog/how-do-you-use-a-thc-vape-pen/",ln:["Pillar","Vape Products"]},
+{t:"Pens Legal?",u:"/blog/are-thc-vape-pens-legal/",ln:["Pillar"]},
+{t:"Disposable Clogged",u:"/blog/vaping/disposable-thc-vape-clogged/",ln:["Pillar","Disposable Products"]},
+{t:"Charge Disposable",u:"/charge-a-disposable-thc-vape/",ln:["Pillar"],w:"Orphan URL"},
+{t:"How Long Lasts",u:"/how-long-does-a-disposable-vape-last/",ln:["Pillar"],w:"Orphan URL"},
+{t:"Fix Burnt Vape",u:"/blog/how-to-fix-a-burnt-vape/",ln:["Pillar"]},
+{t:"Cart Duration",u:"/blog/how-long-does-a-cart-last/",ln:["Pillar","Cart Products"]},
+{t:"Carts vs Disposables",u:"/blog/carts-vs-disposables/",ln:["Pillar","Cart Products","Disposable Products"]},
+{t:"Strains for Sleep",u:"/blog/vaping/best-vape-strains-for-sleep/",ln:["Pillar","Indica Products"]},
+],gaps:[
+{t:"Best THC Vape Pens 2026",kw:"best thc vape pen",pri:"high"},
+{t:"Vape Pen vs Dab Pen",kw:"vape pen vs dab pen",pri:"med"},
+{t:"How to Clean a Vape Cart",kw:"how to clean vape cartridge",pri:"med"},
+]},
+]},
+
+{id:"edibles",n:"Edibles",c:"#db2777",p:{t:"THC Edible Dosage",u:"/blog/thc-edible-dosage/"},b:[
+{h:"Edible Guides",lk:"→ Pillar + Gummy Products",ps:[
+{t:"Too Many Edibles",u:"/blog/edibles/eating-too-many-edibles-guide/",ln:["Pillar","Dosing"]},
+{t:"Edibles vs Smoking",u:"/blog/edibles-vs-smoking-pros-and-cons/",ln:["Pillar","Vaping Silo"]},
+{t:"10mg vs Joint",u:"/blog/10-mg-edible-vs-joint/",ln:["Pillar","Dosing"]},
+{t:"Buy Online Legal",u:"/blog/buy-edibles-online-legal/",ln:["Pillar","Shop"]},
+{t:"Fly with Edibles?",u:"/blog/can-you-fly-with-edibles/",ln:["Pillar","Fly D8 Post"]},
+{t:"Tincture vs Edible",u:"/blog/tincture-vs-edible/",ln:["Pillar","Tincture Products"]},
+{t:"Low Dose Gummies",u:"/blog/thc-gummies/best-low-dose-thc-gummies/",ln:["Pillar","Microdose Products"]},
+{t:"Daily Dosage",u:"/blog/thc-gummies/thc-gummies-daily-dosage/",ln:["Pillar","All Gummy Products"]},
+],gaps:[
+{t:"What Are THC Edibles? [Beginner Guide]",kw:"what are thc edibles",pri:"high"},
+{t:"Edibles vs Gummies: What's the Difference",kw:"edibles vs gummies",pri:"med"},
+{t:"How to Make THC Gummies at Home",kw:"how to make thc gummies",pri:"med"},
+{t:"Best Edibles for First Timers",kw:"best edibles for beginners",pri:"high"},
+]},
+{h:"Wellness",lk:"→ Pillar + Libido/Sleep Products",ps:[
+{t:"Gummies for Sex",u:"/blog/thc-gummies/thc-gummies-for-sex/",ln:["Pillar","Libido Products"]},
+{t:"CBD vs THC Sex",u:"/blog/thc-gummies/cbd-vs-thc-for-sex/",ln:["Pillar","CBD Silo","Libido Products"]},
+{t:"Mood Gummies",u:"/blog/mood-gummies/",ln:["Pillar","Mood Products"]},
+{t:"Caffeine & THC",u:"/blog/mixing-caffeine-and-thc/",ln:["Pillar"]},
+{t:"Read a COA",u:"/how-to-read-a-coa/",ln:["All Product Pages"],w:"Orphan URL"},
+],gaps:[
+{t:"Best THC Gummies for Sleep",kw:"thc gummies for sleep",pri:"high"},
+{t:"THC for Anxiety: Does It Help?",kw:"thc gummies for anxiety",pri:"high"},
+{t:"THC Gummies for Focus",kw:"thc gummies for focus",pri:"med"},
+]},
+]},
+
+{id:"lr",n:"Live Resin",c:"#ca8a04",p:{t:"What Is Live Resin",u:"/blog/what-is-live-resin-vape/"},b:[
+{h:"LR Comparisons",lk:"→ Pillar + LR Products",ps:[
+{t:"LR vs Normal Carts",u:"/blog/live-resin-carts-vs-normal-carts/",ln:["Pillar","LR Cart Products"]},
+{t:"LR vs Diamonds",u:"/blog/live-resin-vs-diamonds/",ln:["Pillar","Diamond Products"]},
+{t:"LR vs Rosin",u:"/blog/live-resin-vs-rosin/",ln:["Pillar","Rosin Post"]},
+{t:"LR vs Distillate",u:"/blog/live-resin-vs-distillate/",ln:["Pillar"],w:"Duplicate exists"},
+{t:"Smoke Live Resin",u:"/blog/how-to-smoke-live-resin/",ln:["Pillar","LR Products"]},
+{t:"What Is Rosin",u:"/blog/what-is-live-rosin/",ln:["Pillar","Rosin Products"]},
+],gaps:[
+{t:"Best Live Resin Carts 2026",kw:"best live resin carts",pri:"high"},
+{t:"Live Resin vs Cured Resin",kw:"live resin vs cured resin",pri:"med"},
+{t:"Is Live Resin Stronger?",kw:"is live resin stronger than regular",pri:"med"},
+]},
+]},
+
+{id:"cbd",n:"CBD",c:"#0d9488",p:{t:"⚠ NEED PILLAR",u:""},b:[
+{h:"CBD Content",lk:"→ Need Pillar! + CBD Products",ps:[
+{t:"CBG vs CBD",u:"/blog/cbg-vs-cbd/",ln:["(Need Pillar)","CBD Products"]},
+{t:"CBN vs CBD",u:"/blog/cbn-vs-cbd/",ln:["(Need Pillar)","Sleep Products"]},
+{t:"CBD Near Me",u:"/blog/cbd-101/cannabidiol-dispensaries-near-me/",ln:["(Need Pillar)","Shop"]},
+{t:"CBD Duration",u:"/blog/cbd-101/how-long-does-cannabidiol-last/",ln:["(Need Pillar)"]},
+],gaps:[
+{t:"What Is CBD? Complete Guide",kw:"what is cbd",pri:"high"},
+{t:"CBD Dosage Chart",kw:"how much cbd should i take",pri:"high"},
+{t:"CBD for Anxiety",kw:"cbd for anxiety",pri:"high"},
+{t:"CBD for Sleep",kw:"cbd for sleep",pri:"high"},
+{t:"CBD Oil vs Gummies",kw:"cbd oil vs gummies",pri:"med"},
+{t:"Full vs Broad Spectrum CBD",kw:"full spectrum vs broad spectrum cbd",pri:"med"},
+]},
+]},
+
+{id:"canna",n:"Cannabinoids",c:"#6366f1",p:{t:"D8 vs D9 vs D10",u:"/blog/delta-8-vs-delta-9-vs-delta-10/"},b:[
+{h:"HHC",lk:"→ Comparison Hub",ps:[
+{t:"Best HHC Gummies",u:"/blog/best-hhc-gummies/",ln:["Comparison Hub","HHC Products"]},
+{t:"HHC vs D8",u:"/blog/hhc-vs-delta-8/",ln:["Comparison Hub","D8 Pillar"]},
+{t:"HHC vs D9",u:"/blog/hhc-vs-delta-9/",ln:["Comparison Hub","D9 Pillar"]},
+{t:"Is HHC Legal?",u:"/blog/is-hhc-legal/",ln:["Comparison Hub"]},
+],gaps:[
+{t:"What Is HHC? [Full Guide]",kw:"what is hhc",pri:"high"},
+]},
+{h:"Basics",lk:"→ All Silos",ps:[
+{t:"Indica vs Sativa",u:"/blog/indica-vs-sativa-7-game-changing-differences/",ln:["All Pillars","Flower Products"]},
+{t:"What Is Sativa",u:"/blog/what-is-sativa/",ln:["Sativa Products"]},
+{t:"What Is Indica",u:"/blog/what-is-indica/",ln:["Indica Products"]},
+{t:"Smoke a Joint",u:"/blog/how-to-smoke-a-joint/",ln:["Pre-Roll Products","Flower Products"]},
+{t:"Grams/Ounce",u:"/blog/how-many-grams-are-in-an-ounce-of-weed/",ln:["Flower Products"]},
+{t:"THC in System",u:"/blog/how-long-does-thc-stay-in-system/",ln:["All Drug Test Posts"]},
+],gaps:[
+{t:"Cannabinoid Guide: All Types Explained",kw:"types of cannabinoids",pri:"high"},
+{t:"Entourage Effect Explained",kw:"entourage effect",pri:"med"},
+]},
+]},
+
+{id:"kratom",n:"Kratom",c:"#b45309",p:{t:"⚠ NEED PILLAR",u:""},b:[
+{h:"Kratom Guides",lk:"→ Need Pillar! + Products",ps:[
+{t:"Kratom Anxiety",u:"/blog/kratom/kratom-gummies-for-social-anxiety/",ln:["(Need Pillar)","Kratom Products"]},
+{t:"Kratom vs Kava vs CBD",u:"/blog/kratom/kratom-gummies-vs-kava-gummies-vs-cbd-gummies/",ln:["(Need Pillar)","CBD Silo"]},
+{t:"Natural Pre-Workout",u:"/blog/kratom/natural-alternatives-to-pre-workout-supplements/",ln:["(Need Pillar)","Energy Products"]},
+{t:"Work Faster",u:"/blog/kratom/make-kratom-gummies-work-faster/",ln:["(Need Pillar)","Kratom Products"]},
+{t:"Focus & Energy",u:"/blog/kratom/kratom-gummies-for-focus-and-energy/",ln:["(Need Pillar)","Energy Products"]},
+],gaps:[
+{t:"What Is Kratom? Beginner Guide",kw:"what is kratom",pri:"high"},
+{t:"Kratom Dosage Guide",kw:"kratom dosage chart",pri:"high"},
+{t:"Is Kratom Legal? [State Guide]",kw:"is kratom legal",pri:"high"},
+{t:"Kratom Strains Explained",kw:"kratom strains guide",pri:"med"},
+]},
+]},
+
+{id:"shroom",n:"Mushrooms",c:"#9333ea",p:{t:"Amanita vs Psilocybin",u:"/blog/amanita-vs-psilocybin-mushrooms/"},b:[
+{h:"Amanita Guides",lk:"→ Pillar + Products",ps:[
+{t:"Amanita Legal?",u:"/blog/are-amanita-mushrooms-legal/",ln:["Pillar"]},
+{t:"Amanita Effects",u:"/blog/amanita-muscaria/amanita-muscaria-effects/",ln:["Pillar","Mushroom Products"]},
+{t:"Muscimol Benefits",u:"/blog/what-is-muscimol-benefits/",ln:["Pillar"]},
+{t:"Gummy Duration",u:"/blog/how-long-does-amanita-muscaria-gummies-last/",ln:["Pillar","Mushroom Gummies"]},
+{t:"Shrooms Kick-in",u:"/blog/how-long-does-it-take-for-shrooms-to-kick-in/",ln:["Pillar"]},
+],gaps:[
+{t:"Best Amanita Mushroom Gummies",kw:"best amanita gummies",pri:"high"},
+{t:"Amanita Muscaria Dosage Guide",kw:"amanita muscaria dosage",pri:"high"},
+{t:"Microdosing Amanita Guide",kw:"microdosing amanita muscaria",pri:"med"},
+]},
+]},
+];
+
+// ═══════ ENGINE ═══════
+let exS=new Set(["thca"]),exH=new Set(),nPos={},edgeArr=[],chMap={};
+let pan={x:0,y:0},zm=0.42,drag=null,moved=0,pinchD=0,pinchZ=0;
+const R1=370,R2=280,R3=190;
+const svgEl=document.getElementById('svg'),world=document.getElementById('world');
+const OFF={root:[-70,-35],silo:[-56,-25],pillar:[-80,-32],hub:[-62,-38],post:[-75,-28],gap:[-75,-28]};
+
+function allItems(hub){return [...hub.ps,...(showGaps&&hub.gaps?hub.gaps.map(g=>({...g,isGap:true})):[])]}
+
+function layout(){
+  const p={},e=[],ch={};
+  p.root=nPos.root||{x:0,y:0};ch.root=[];
+  const n=SL.length,st=2*Math.PI/n;
+  SL.forEach((s,i)=>{
+    const a=-Math.PI/2+st*i,sx=Math.cos(a)*R1,sy=Math.sin(a)*R1;
+    p[s.id]=nPos[s.id]||{x:sx,y:sy};ch.root.push(s.id);ch[s.id]=[];
+    e.push({f:'root',t:s.id,c:s.c,w:5});
+    if(exS.has(s.id)){
+      const pid=s.id+'_p';
+      p[pid]=nPos[pid]||{x:p[s.id].x+Math.cos(a)*130,y:p[s.id].y+Math.sin(a)*130};
+      ch[s.id].push(pid);ch[pid]=[];
+      e.push({f:s.id,t:pid,c:s.c,w:3,d:1});
+      const hubs=s.b,sp=Math.min(st*.82,Math.PI*.6),hSt=hubs.length>1?sp/(hubs.length-1):0,hA=a-sp/2;
+      hubs.forEach((hub,hi)=>{
+        const ha=hubs.length>1?hA+hSt*hi:a,hid=s.id+'-'+hi;
+        p[hid]=nPos[hid]||{x:p[s.id].x+Math.cos(ha)*R2,y:p[s.id].y+Math.sin(ha)*R2};
+        ch[s.id].push(hid);ch[hid]=[];
+        e.push({f:s.id,t:hid,c:s.c,w:3.5});
+        if(exH.has(hid)){
+          const items=allItems(hub);
+          const pSp=Math.min(hSt||st*.5,Math.PI*.45),pSt=items.length>1?pSp/(items.length-1):0,pA=ha-pSp/2;
+          items.forEach((item,pi)=>{
+            const pa=items.length>1?pA+pSt*pi:ha,postId=hid+'-'+pi;
+            p[postId]=nPos[postId]||{x:p[hid].x+Math.cos(pa)*R3,y:p[hid].y+Math.sin(pa)*R3};
+            ch[hid].push(postId);ch[postId]=[];
+            e.push({f:hid,t:postId,c:item.isGap?'#22c55e':s.c,w:item.isGap?1.5:2,d:item.isGap?1:0});
+          });
+        }
+      });
+    }
+  });
+  nPos=p;edgeArr=e;chMap=ch;
+}
+
+function desc(id){const r=[],k=chMap[id]||[];k.forEach(c=>{r.push(c);r.push(...desc(c))});return r}
+
+function meta(id){
+  if(id==='root')return{tp:'root'};
+  for(const s of SL){
+    if(s.id===id)return{tp:'silo',s};
+    if(id===s.id+'_p')return{tp:'pillar',s};
+    for(let i=0;i<s.b.length;i++){
+      const h=s.id+'-'+i;
+      if(id===h)return{tp:'hub',s,h:s.b[i],hi:i};
+      const items=allItems(s.b[i]);
+      for(let j=0;j<items.length;j++){
+        if(id===h+'-'+j){
+          const item=items[j];
+          return item.isGap?{tp:'gap',s,g:item}:{tp:'post',s,p:item};
+        }
+      }
+    }
+  }
+  return null;
+}
+
+function bz(x1,y1,x2,y2){const dx=x2-x1;return`M${x1} ${y1}C${x1+dx*.45} ${y1} ${x2-dx*.45} ${y2} ${x2} ${y2}`}
+
+function drawRopes(){
+  let h='';
+  edgeArr.forEach(e=>{
+    const a=nPos[e.f],b=nPos[e.t];if(!a||!b)return;
+    const d=bz(a.x,a.y,b.x,b.y);
+    h+=`<path d="${d}" stroke="${e.c}" stroke-width="${e.w+8}" fill="none" stroke-linecap="round" opacity=".07"/>`;
+    h+=`<path d="${d}" stroke="${e.c}" stroke-width="${e.w}" fill="none" stroke-linecap="round" opacity="${e.d?.35:.55}"${e.d?' stroke-dasharray="8 5"':''}/>`;
+    h+=`<circle cx="${a.x}" cy="${a.y}" r="${Math.min(e.w*.6,3)}" fill="${e.c}" opacity=".3"/>`;
+    h+=`<circle cx="${b.x}" cy="${b.y}" r="${Math.min(e.w*.6,3)}" fill="${e.c}" opacity=".3"/>`;
+  });
+  svgEl.innerHTML=h;
+}
+
+function drawNodes(){
+  world.querySelectorAll('.nd').forEach(e=>e.remove());
+  Object.keys(nPos).forEach(id=>{
+    const p=nPos[id],m=meta(id);if(!m)return;
+    const d=document.createElement('div');d.className='nd';d.dataset.nid=id;
+    const o=OFF[m.tp]||[-50,-20];
+
+    if(m.tp==='root'){
+      d.className+=' nd-root';
+      d.innerHTML='<h2>ExhaleWell</h2><span>.COM SITEMAP</span>';
+    }else if(m.tp==='silo'){
+      d.className+=' nd-silo';
+      const ct=m.s.b.reduce((a,b)=>a+b.ps.length,0);
+      const gc=m.s.b.reduce((a,b)=>a+(b.gaps?b.gaps.length:0),0);
+      d.style.background=m.s.c;d.style.boxShadow='0 4px 24px '+m.s.c+'40'+(exS.has(id)?',0 0 0 4px '+m.s.c+'50':'');
+      d.innerHTML=`<b>${m.s.n}</b><em>${ct}${showGaps&&gc?' +'+gc:''}</em>`;
+    }else if(m.tp==='pillar'){
+      d.className+=' nd-pillar';const w=m.s.p.t.startsWith('⚠');
+      d.style.border='3px solid '+(w?'#f59e0b':m.s.c);if(w)d.style.background='#fffbeb';
+      d.innerHTML=`<div class="tag" style="color:${w?'#b45309':m.s.c}">${w?'⚠ MISSING PILLAR':'★ PILLAR PAGE'}</div><div class="nm">${m.s.p.t}</div>`;
+    }else if(m.tp==='hub'){
+      d.className+=' nd-hub';const gc=m.h.gaps?m.h.gaps.length:0;
+      d.style.borderLeft='5px solid '+m.s.c;d.style.boxShadow='0 3px 14px rgba(0,0,0,.07)'+(exH.has(id)?',0 0 0 3px '+m.s.c+'30':'');
+      d.innerHTML=`<div class="nm" style="color:${m.s.c}">${m.h.h}</div><div class="ct">${m.h.ps.length} posts</div>${m.h.lk?`<div class="lk" style="background:${m.s.c}12;color:${m.s.c}">${m.h.lk}</div>`:''}${showGaps&&gc?`<div class="gaps-badge">+${gc} gaps</div>`:''}`;
+    }else if(m.tp==='post'){
+      d.className+=' nd-post';const w=m.p.w;
+      d.style.border='1.5px solid '+(w?'#fbbf24':m.s.c+'28');if(w)d.style.background='#fffbeb';
+      let lnk='';
+      if(m.p.ln&&m.p.ln.length){lnk='<div class="link-pills">'+m.p.ln.map(l=>'<span class="lp">→'+l+'</span>').join('')+'</div>';}
+      d.innerHTML=`<div class="row"><span class="dot" style="background:${m.s.c}"></span><span class="nm">${m.p.t}</span></div>${w?'<div class="wrn">⚠ '+w+'</div>':''}${lnk}<span class="go" style="color:${m.s.c}">↗ Open</span>`;
+    }else if(m.tp==='gap'){
+      d.className+=' nd-gap';
+      const pc=m.g.pri==='high'?'pri-high':m.g.pri==='med'?'pri-med':'pri-low';
+      d.innerHTML=`<div class="row"><span class="plus">+</span><span class="nm">${m.g.t}</span></div><span class="kw">🎯 ${m.g.kw}</span><span class="pri ${pc}">${m.g.pri} priority</span>`;
+    }
+    d.style.left=(p.x+o[0])+'px';d.style.top=(p.y+o[1])+'px';
+    world.appendChild(d);
+  });
+}
+
+function updateTransform(){const vw=innerWidth,vh=innerHeight;world.style.transform=`translate(${vw/2+pan.x}px,${vh/2+pan.y}px) scale(${zm})`;document.getElementById('zLbl').textContent=Math.round(zm*100)+'%'}
+function render(){layout();drawRopes();drawNodes();updateTransform()}
+
+function gp(e){const t=e.touches?e.touches[0]:e;return{x:t.clientX,y:t.clientY}}
+document.getElementById('vp').addEventListener('pointerdown',function(e){
+  const nd=e.target.closest('.nd');const pp=gp(e);moved=0;
+  if(nd){const snap={};for(const k in nPos)snap[k]={...nPos[k]};drag={tp:'node',id:nd.dataset.nid,sx:pp.x,sy:pp.y,snap}}
+  else{drag={tp:'pan',sx:pp.x-pan.x,sy:pp.y-pan.y}}
+});
+document.addEventListener('pointermove',function(e){
+  if(!drag)return;const pp=gp(e);
+  if(drag.tp==='pan'){const nx=pp.x-drag.sx,ny=pp.y-drag.sy;moved+=Math.abs(nx-pan.x)+Math.abs(ny-pan.y);pan.x=nx;pan.y=ny;updateTransform()}
+  else{const dx=(pp.x-drag.sx)/zm,dy=(pp.y-drag.sy)/zm;moved+=Math.abs(dx)+Math.abs(dy);
+    const ids=[drag.id,...desc(drag.id)],snap=drag.snap;
+    ids.forEach(nid=>{if(snap[nid])nPos[nid]={x:snap[nid].x+dx,y:snap[nid].y+dy}});
+    drawRopes();
+    ids.forEach(nid=>{const el=world.querySelector(`[data-nid="${nid}"]`);if(!el||!nPos[nid])return;const p=nPos[nid],m=meta(nid),o=OFF[m.tp]||[-50,-20];el.style.left=(p.x+o[0])+'px';el.style.top=(p.y+o[1])+'px'});
+  }
+});
+document.addEventListener('pointerup',function(){
+  if(!drag)return;const d=drag;drag=null;
+  if(moved<10){const m=meta(d.id);if(!m)return;
+    if(m.tp==='silo'){if(exS.has(d.id)){exS.delete(d.id);m.s.b.forEach((_,i)=>exH.delete(d.id+'-'+i))}else exS.add(d.id);render()}
+    else if(m.tp==='hub'){exH.has(d.id)?exH.delete(d.id):exH.add(d.id);render()}
+    else if(m.tp==='pillar'&&m.s.p.u){window.open(B+m.s.p.u,'_blank')}
+    else if(m.tp==='post'&&m.p.u){window.open(B+m.p.u,'_blank')}
+  }
+});
+document.getElementById('vp').addEventListener('touchstart',function(e){if(e.touches.length===2){e.preventDefault();pinchD=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);pinchZ=zm}},{passive:false});
+document.addEventListener('touchmove',function(e){if(e.touches.length===2&&pinchD){e.preventDefault();const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);zm=Math.max(.12,Math.min(2.5,pinchZ*(d/pinchD)));updateTransform()}},{passive:false});
+document.addEventListener('touchend',()=>{pinchD=0});
+
+function Z(dir){zm=Math.max(.12,Math.min(2.5,zm+dir*.1));updateTransform()}
+function RESET(){pan={x:0,y:0};zm=.42;exS=new Set(["thca"]);exH=new Set();nPos={};render()}
+function toggleGaps(){showGaps=!showGaps;document.getElementById('gapToggle').textContent=showGaps?'✦ Gaps ON':'✦ Gaps OFF';document.getElementById('gapToggle').className=showGaps?'':'off';nPos={};exH=new Set();render()}
+
+render();
+</script>
+</body>
+</html>
