@@ -1,8 +1,8 @@
-# BharatByDay 🇮🇳
+# भारतByDay 🇮🇳
 
 **One unique spot in India to explore, every single day.**
 
-BharatByDay is an open-access travel journal from the **F9XR Editorial Team** that publishes one researched, offbeat destination every day — from hidden stepwells and forgotten valleys to local culture the guidebooks miss.
+भारतByDay is an open-access travel journal from the **F9XR Editorial Team** that publishes one researched, offbeat destination every day — from hidden stepwells and forgotten valleys to local culture the guidebooks miss.
 
 Live site: <https://f9xr.github.io/BharatByDay>
 

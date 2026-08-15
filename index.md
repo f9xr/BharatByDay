@@ -4,9 +4,9 @@ layout: home
 
 <p class="hero-tagline">One unique spot in India to explore, every single day.</p>
 
-Welcome to **BharatByDay**, your daily compass to the spectacular, the unseen, and the offbeat corners of India. From the misty coffee plantations of Chikmagalur to the untouched hamlets of the Himalayas, India holds secrets that standard guidebooks miss.
+Welcome to **भारतByDay**, your daily compass to the spectacular, the unseen, and the offbeat corners of India. From the misty coffee plantations of Chikmagalur to the untouched hamlets of the Himalayas, India holds secrets that standard guidebooks miss.
 
-We believe that exploring this beautiful country shouldn't be limited to major tourist hubs. That is why we bring you one incredible new destination, hidden trail, or local culture to explore every single day. Whether you are a weekend backpacker or a full-time wanderer, BharatByDay is your ultimate roadmap to uncovering the true rhythm of India, one day at a time.
+We believe that exploring this beautiful country shouldn't be limited to major tourist hubs. That is why we bring you one incredible new destination, hidden trail, or local culture to explore every single day. Whether you are a weekend backpacker or a full-time wanderer, भारतByDay is your ultimate roadmap to uncovering the true rhythm of India, one day at a time.
 
 <div class="search-cta">
   <p><strong>Looking for a specific region or theme?</strong> Use our on-site search to find every gem by destination, state, or activity.</p>
@@ -26,7 +26,7 @@ We launch on **August 15, 2026**, as India marks its **80th Independence Day** �
 
 ## Why you can trust every post
 
-Every destination on BharatByDay is researched from primary sources — Archaeological Survey of India records, forest and wildlife department permits, and local guides — before it is published. Our [F9XR Editorial Team]({{ "/author/f9xr" | relative_url }}) verifies routes, seasons, and entry requirements, and we correct the record openly when things change.
+Every destination on भारतByDay is researched from primary sources — Archaeological Survey of India records, forest and wildlife department permits, and local guides — before it is published. Our [F9XR Editorial Team]({{ "/author/f9xr" | relative_url }}) verifies routes, seasons, and entry requirements, and we correct the record openly when things change.
 
 - **Experience** — real, on-the-ground reporting from across India's states and union territories.
 - **Expertise** — practical logistics: how to get there, when to go, what to carry.

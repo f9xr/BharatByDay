@@ -1,12 +1,12 @@
 # ============================================================
-# BharatByDay — site configuration
+# भारतByDay — site configuration
 # ============================================================
 
-title: "BharatByDay"
+title: "भारतByDay"
 tagline: "One unique spot in India to explore, every single day."
 author: "F9XR Editorial Team"
 email: "tontufytservices@gmail.com"
-description: "One unique spot in India to explore, every single day. BharatByDay uncovers offbeat India — hidden stepwells, forgotten valleys, and local culture that the guidebooks miss."
+description: "One unique spot in India to explore, every single day. भारतByDay uncovers offbeat India — hidden stepwells, forgotten valleys, and local culture that the guidebooks miss."
 lang: en
 timezone: Asia/Kolkata
 

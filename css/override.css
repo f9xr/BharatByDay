@@ -1,5 +1,5 @@
 /* ============================================================
-   BharatByDay — full design system for the minima theme
+   भारतByDay — full design system for the minima theme
    Dark by default; light theme via html[data-theme="light"]
    ============================================================ */
 
@@ -764,6 +764,38 @@ html[data-theme="light"] .theme-icon-sun {
 
 .post-header {
   margin-bottom: 1.2rem;
+}
+
+.post-image {
+  margin: 0 0 1.4rem;
+}
+
+.post-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--bbd-radius);
+  border: 1px solid var(--bbd-border);
+  box-shadow: var(--bbd-shadow);
+}
+
+.video-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 1.6rem 0;
+  border-radius: var(--bbd-radius);
+  overflow: hidden;
+  border: 1px solid var(--bbd-border);
+  box-shadow: var(--bbd-shadow);
+}
+
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 .post-title {

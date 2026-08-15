@@ -40,6 +40,12 @@ layout: default
     </p>
   </header>
 
+  {%- if page.image -%}
+  <figure class="post-image" aria-label="Featured image">
+    <img src="{{ page.image }}" alt="{{ page.title | escape }}" loading="eager">
+  </figure>
+  {%- endif -%}
+
   <div class="share-links">
     {% include sharelinks.html %}
   </div>

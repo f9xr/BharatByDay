@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Blog Archive
-description: "Every hidden gem BharatByDay has covered, organised by region and theme."
+description: "Every hidden gem भारतByDay has covered, organised by region and theme."
 ---
 
 <div class="archive-page">
