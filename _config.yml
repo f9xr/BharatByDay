@@ -54,6 +54,19 @@ feed:
   path: atom.xml
   posts_limit: 20
 
+# ------------------------------------------------------------------
+# Files & folders to keep OUT of the built site
+# (opencode skills/tooling and local notes are not website content)
+# ------------------------------------------------------------------
+exclude:
+  - skills
+  - .opencode
+  - .github
+  - todo.txt
+  - mindmap-skill.skill
+  - all-urls.txt
+  - README.md
+
 #########################################################################################
 ######### Nothing below needs to be changed (unless you know what you're doing) #########
 #########################################################################################
