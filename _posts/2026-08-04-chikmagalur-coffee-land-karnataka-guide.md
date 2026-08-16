@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Chikmagalur: Karnataka's Coffee Land Guide 2025"
+title: "Chikmagalur: Karnataka's Coffee Land Guide 2026"
 description: "Discover Chikmagalur, Karnataka's coffee capital. Explore estates, peaks, weather, best time to visit, and travel tips in this complete local guide."
-tags: [Chikmagalur, Karnataka Tourism, Coffee Land of India, Western Ghats, Mullayanagiri, Coffee Estates Karnataka, Hill Station India, Baba Budangiri, South India Travel, Local SEO for Tourism Businesses]
+tags: [Karnataka, Coffee Land of India, Western Ghats, Mullayanagiri, Coffee Estates Karnataka, Hill Station India, Baba Budangiri, South India Travel, Local SEO for Tourism Businesses]
 image: "https://hblimg.mmtcdn.com/content/hubble/img/desttvimg/mmt/destination/t_trp/m_Chikmagalur_tv_destination_img_4_l_635_952.jpg?im=Resize=(750,399)"
 permalink: /chikmagalur-coffee-land-karnataka-guide
 ---

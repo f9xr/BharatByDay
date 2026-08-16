@@ -85,11 +85,11 @@ a {
 a:hover,
 a:visited:hover {
   color: var(--bbd-saffron-bright);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 a:visited {
-  color: var(--bbd-saffron);
+  color: inherit;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -940,7 +940,7 @@ html[data-theme="light"] .theme-icon-sun {
 
 .post-content h2 {
   font-family: var(--bbd-font-grotesk-display);
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   margin: 2.2rem 0 1rem;
   padding-bottom: 0.4rem;
   border-bottom: 1px solid var(--bbd-border);
@@ -949,16 +949,29 @@ html[data-theme="light"] .theme-icon-sun {
 
 .post-content h3 {
   font-family: var(--bbd-font-grotesk-display);
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   margin: 1.9rem 0 0.9rem;
   scroll-margin-top: 96px;
 }
 
 .post-content h4 {
   font-family: var(--bbd-font-grotesk-display);
-  font-size: 1.1rem;
+  font-size: 1.18rem;
   margin: 1.6rem 0 0.7rem;
   scroll-margin-top: 96px;
+}
+
+.post-content h5 {
+  font-family: var(--bbd-font-grotesk-display);
+  font-size: 1.02rem;
+  margin: 1.4rem 0 0.6rem;
+  scroll-margin-top: 96px;
+}
+
+/* Keep the underline-on-hover affordance for in-article links */
+.post-content a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .post-content ul,
@@ -1554,7 +1567,7 @@ pre.copyable:hover .copy-btn,
   right: 26px;
   width: 46px;
   height: 46px;
-  border: 1px solid var(--bbd-border);
+  border: none;
   border-radius: 50%;
   background: var(--bbd-bg-raise);
   color: var(--bbd-text);
@@ -1565,6 +1578,17 @@ pre.copyable:hover .copy-btn,
   transform: translateY(8px);
   transition: opacity 0.2s ease, transform 0.2s ease, border-color 0.15s ease, color 0.15s ease;
   z-index: 999;
+}
+
+/* Circular scroll-progress ring around the button */
+#back-to-top::before {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: conic-gradient(var(--bbd-saffron) var(--bbd-progress, 0%), transparent var(--bbd-progress, 0%));
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
 }
 
 #back-to-top.show {
@@ -1581,6 +1605,8 @@ pre.copyable:hover .copy-btn,
 #back-to-top svg {
   width: 20px;
   height: 20px;
+  position: relative;
+  z-index: 1;
 }
 
 /* ---------- Auto table of contents (left sidebar) ---------- */

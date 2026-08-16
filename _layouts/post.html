@@ -28,7 +28,7 @@ layout: default
 
 <article class="post h-entry post-tailwind" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <div class="mx-auto w-full max-w-[1180px]">
+  <div class="mx-auto w-full max-w-[1360px]">
 
     <!-- ======================================================================
          1. BREADCRUMB
@@ -47,71 +47,110 @@ layout: default
     </nav>
 
     <!-- ======================================================================
-         2. HEADER BLOCK
+         2. ARTICLE HEADLINE BLOCK (above the image)
+         Thin hairline rule -> tag pills -> high-impact H1
          ====================================================================== -->
-    <header class="post-header">
 
-      <!-- Category badge -->
-      <a href="{{ "/archive.html" | relative_url }}#{{ post_category | slugify }}"
-         class="inline-flex items-center gap-1.5 rounded-full border border-[#ff9933]/30 bg-[#ff9933]/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-[#ff9933] transition-colors hover:bg-[#ff9933]/20">
-        <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 12 2 2 4-4"/><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z"/></svg>
-        {{ post_category | escape }}
-      </a>
+    <!-- Continuous thin hairline rule spanning the full width at the top -->
+    <div class="border-t border-zinc-200/25" aria-hidden="true"></div>
 
-      <!-- Main title -->
-      <h1 class="post-title p-name mt-4 font-display text-4xl font-bold leading-[1.12] tracking-tight text-zinc-50 sm:text-5xl" itemprop="name headline">
-        {{ page.title | escape }}
-      </h1>
+    <header class="post-header pt-8 sm:pt-10">
 
-      <!-- Subtitle hook -->
-      {%- assign post_subtitle = page.subtitle | default: page.description | default: page.excerpt | strip_html -%}
-      {%- if post_subtitle -%}
-      <p class="post-description mt-5 max-w-2xl text-lg leading-relaxed text-zinc-400 sm:text-xl" itemprop="description">
-        {{ post_subtitle | escape }}
-      </p>
-      {%- endif -%}
-
-      <!-- Meta row: date · read time · author · tags -->
-      <div class="post-meta mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-zinc-500">
-        <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-          {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-          {{ page.date | date: date_format }}
-        </time>
-        <span class="text-zinc-700" aria-hidden="true">·</span>
-        <span class="post-read-time">
+      <!-- Top tags: category pill + read-time pill -->
+      <div class="flex flex-wrap items-center gap-2">
+        <a href="{{ "/archive.html" | relative_url }}#{{ post_category | slugify }}"
+           class="inline-flex items-center gap-1.5 rounded-full border border-zinc-700 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-zinc-300 transition-colors hover:border-[#ff9933] hover:text-[#ff9933]">
+          <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 12 2 2 4-4"/><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z"/></svg>
+          {{ post_category | escape }}
+        </a>
+        <span class="inline-flex items-center gap-1.5 rounded-full border border-zinc-700 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-zinc-300">
           {%- assign words = page.content | number_of_words -%}
           {%- assign mins = words | divided_by: 200.0 | ceil -%}
           {{ mins }} min read
         </span>
-        <span class="text-zinc-700" aria-hidden="true">·</span>
-        <span class="post-author">Written by <a class="font-medium text-zinc-300 transition-colors hover:text-[#ff9933]" href="{{ "/author/f9xr" | relative_url }}" rel="author">{{ page.author | default: site.author | escape }}</a></span>
-        {%- if page.tags -%}
-        <span class="text-zinc-700" aria-hidden="true">·</span>
-        <span class="post-tags" aria-label="Tags">
-          {%- for tag in page.tags -%}
-          <a class="font-medium text-zinc-300 transition-colors hover:text-[#ff9933]" href="{{ "/archive.html" | relative_url }}#{{ tag | slugify }}" rel="tag">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
-          {%- endfor -%}
-        </span>
-        {%- endif -%}
       </div>
+
+      <!-- Main title -->
+      <h1 class="post-title p-name mt-6 max-w-4xl font-display text-4xl font-bold leading-[1.08] tracking-tight text-zinc-50 sm:text-5xl lg:text-6xl" itemprop="name headline">
+        {{ page.title | escape }}
+      </h1>
     </header>
 
     <!-- ======================================================================
-         3. FEATURED HERO IMAGE (wide, framed)
+         3. EMBEDDED MEDIA CARD WITH FOLDED CORNER
+         Wide landscape cover image clipped at the top-left into a dog-eared
+         "folded paper" finish, with a frosted-glassmorphic metadata panel
+         (lower HUD) floating over the bottom of the image.
          ====================================================================== -->
-    {%- if page.image -%}
-    <figure class="post-image mt-9" aria-label="Featured image">
-      <img src="{{ page.image }}" alt="{{ page.title | escape }}" loading="eager" decoding="async"
-           class="block w-full rounded-2xl border border-zinc-800 object-cover shadow-[0_20px_60px_-20px_rgba(0,0,0,0.9)]">
-    </figure>
-    {%- endif -%}
+    <div class="relative mt-12 sm:mt-16">
+      {%- if page.image -%}
+      <figure class="post-image relative overflow-hidden rounded-2xl border border-zinc-800" aria-label="Featured image">
+        <img src="{{ page.image }}" alt="{{ page.title | escape }}" loading="eager" decoding="async"
+             class="block w-full object-cover shadow-[0_30px_80px_-24px_rgba(0,0,0,0.9)] [clip-path:polygon(32px_0,100%_0,100%_100%,0_100%,0_32px)]">
+        <!-- Folded corner cutout -->
+        <svg class="absolute left-0 top-0 h-8 w-8" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <polygon points="0,0 32,0 0,32" fill="#0d1117"/>
+          <polyline points="32,0 0,32" stroke="rgba(255,255,255,0.14)" stroke-width="1" fill="none"/>
+        </svg>
+      </figure>
+      {%- endif -%}
+
+      <!-- Glassmorphic metadata overlay (lower HUD) -->
+      <div class="relative z-10 mx-4 {% if page.image %}sm:mx-8 -mt-14 lg:-mt-20{% endif %}">
+        <div class="rounded-2xl border border-white/10 bg-white/10 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.9)] backdrop-blur-xl">
+
+          <!-- Abstract summary snippet (2-line intro with underlined key words) -->
+          {%- assign _sum = page.description | default: page.excerpt | strip_html | normalize_whitespace | default: page.tldr | default: "One unique spot in India to explore, every single day." -%}
+          {%- assign _sum_words = _sum | split: " " -%}
+          {%- assign _lead = _sum_words | slice: 0, 6 | join: " " -%}
+          {%- assign _rest = _sum_words | slice: 6, _sum_words.size | join: " " -%}
+          <p class="px-6 pt-6 text-base leading-relaxed text-white sm:px-8 sm:text-lg">
+            {%- if _lead != "" -%}<span class="font-semibold underline decoration-[#ff9933] decoration-2 underline-offset-4">{{ _lead | escape }}</span>{%- endif -%}{%- if _rest != "" -%} {{ _rest | escape }}{%- endif -%}
+          </p>
+
+          <!-- Meta grid columns -->
+          <div class="grid grid-cols-1 gap-6 px-6 py-6 sm:grid-cols-2 sm:px-8 lg:grid-cols-3">
+            <!-- Written by -->
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">Written by</p>
+              <div class="mt-2 flex items-center gap-2.5">
+                <img class="h-9 w-9 flex-none rounded-full border border-white/20 object-cover" src="{{ site.logo }}" alt="{{ site.title | escape }} logo" width="36" height="36" loading="lazy">
+                <a class="p-author font-medium text-white transition-colors hover:text-[#ff9933]" href="{{ "/author/f9xr" | relative_url }}" rel="author">{{ page.author | default: site.author | escape }}</a>
+              </div>
+            </div>
+            <!-- Published on -->
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">Published on</p>
+              <p class="mt-2 font-medium text-white">
+                <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+                  {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+                  {{ page.date | date: date_format }}
+                </time>
+              </p>
+            </div>
+            <!-- File under -->
+            <div class="sm:col-span-2 lg:col-span-1">
+              <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">File under</p>
+              <div class="mt-2 flex flex-wrap items-center gap-1.5">
+                {%- if page.tags -%}
+                {%- for tag in page.tags -%}
+                <a class="rounded-full border border-white/30 px-2.5 py-0.5 text-xs font-medium text-white transition-colors hover:border-[#ff9933] hover:text-[#ff9933]" href="{{ "/archive.html" | relative_url }}#{{ tag | slugify }}" rel="tag">{{ tag }}</a>
+                {%- endfor -%}
+                {%- endif -%}
+                <span class="rounded-full border border-white/30 px-2.5 py-0.5 text-xs font-medium text-white">{{ mins }} min read</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ======================================================================
          4. ASYMMETRICAL 2-COLUMN LAYOUT
          Left sidebar ~25% (sticky author + TOC + newsletter)
          Right column  ~75% (reading pipeline)
          ====================================================================== -->
-    <div class="mt-12 grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,15fr)] lg:gap-12">
+    <div class="mt-12 grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,4fr)_minmax(0,9fr)] lg:gap-12">
 
       <!-- ====================================================================
            LEFT SIDEBAR — on mobile it stacks below the article text
@@ -168,7 +207,7 @@ layout: default
            RIGHT READING COLUMN
            ==================================================================== -->
       <div class="order-first min-w-0 lg:order-last">
-        <div class="mx-auto w-full max-w-[760px]">
+        <div class="mx-auto w-full max-w-[840px]">
 
           <!-- ----- Article tools (font size, listen, PDF, copy link) ----- -->
           <div class="post-controls" role="toolbar" aria-label="Article tools">
@@ -402,7 +441,7 @@ layout: default
 <style>
   /* Widen the reading canvas on post pages (pure black, long-form focused) */
   @supports selector(:has(*)) {
-    .page-content .wrapper:has(.post-tailwind) { max-width: 1240px; }
+    .page-content .wrapper:has(.post-tailwind) { max-width: 1400px; }
   }
 
   .post-tailwind { font-family: "Neue Haas Grotesk Text Pro", "Neue Haas Grotesk Display Pro", "Inter", ui-sans-serif, system-ui, sans-serif; }
@@ -416,7 +455,7 @@ layout: default
   .site-nav .trigger { display: flex; align-items: center; gap: 2px; flex-wrap: wrap; justify-content: flex-end; }
 
   /* --- On This Page table of contents --- */
-  #post-toc { position: static; top: auto; left: auto; width: auto; max-height: none; overflow: visible; padding: 1.25rem; margin: 0; background: #0c0c0d; border: 1px solid #27272a; border-radius: 1rem; }
+  #post-toc { position: static; top: auto; left: auto; width: auto; max-height: none; overflow: visible; padding: 1.5rem; margin: 0; background: #0c0c0d; border: 1px solid #27272a; border-radius: 1rem; }
   #post-toc .toc-title { font-family: "Neue Haas Grotesk Display Pro", "Neue Haas Grotesk Text Pro", "Inter", sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #ff9933; margin: 0 0 0.6rem; }
   #post-toc ol.toc-list { list-style: none; margin: 0; padding: 0; border-left: 1px solid #26262b; }
   #post-toc li { margin: 0; }

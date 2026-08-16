@@ -2,7 +2,7 @@
 layout: post
 title: "Chand Baori: Rajasthan's Ancient Stepwell Marvel"
 description: "Explore Chand Baori, one of India's deepest stepwells in Abhaneri, Rajasthan. History, architecture, visiting tips, and why it still amazes travelers."
-tags: [Chand Baori, Abhaneri Rajasthan, Indian Stepwells, Rajasthan Tourism, Ancient Indian Architecture, Heritage Sites India, Jaipur Day Trips, Nikumbha Dynasty, Archaeological Survey of India, Local SEO for Tourism Businesses]
+tags: [Rajasthan, Abhaneri Rajasthan, Indian Stepwells, Rajasthan Tourism, Ancient Indian Architecture, Heritage Sites India, Jaipur Day Trips, Nikumbha Dynasty, Archaeological Survey of India, Local SEO for Tourism Businesses]
 image: "https://www.chandbaori.org/images/Chand-Baori-banner.png"
 ---
 

@@ -2,22 +2,24 @@
   'use strict';
 
   var bar = document.getElementById('reading-progress');
-  if (bar) {
+  var topBtn = document.getElementById('back-to-top');
+  if (bar || topBtn) {
     var onScroll = function () {
       var html = document.documentElement;
       var total = html.scrollHeight - html.clientHeight;
       var pct = total > 0 ? (html.scrollTop / total) * 100 : 0;
-      bar.style.width = pct + '%';
+      if (bar) bar.style.width = pct + '%';
+      if (topBtn) {
+        topBtn.style.setProperty('--bbd-progress', pct + '%');
+        topBtn.classList.toggle('show', window.scrollY > 600);
+      }
     };
     document.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
 
-  var topBtn = document.getElementById('back-to-top');
   if (topBtn) {
-    window.addEventListener('scroll', function () {
-      topBtn.classList.toggle('show', window.scrollY > 600);
-    }, { passive: true });
     topBtn.addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
