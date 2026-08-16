@@ -1,0 +1,36 @@
+
+https://www.incredibleindia.gov.in
+https://saloon.wtf/
+
+
+
+Fixes in all articles:
+A large first letter in an article is called a drop cap or initial cap.
+fix the CSS of table, so it is readble on black bg,
+add option for users to download our article as PDF, Listen article, Increase or decrease font size 
+add more social media social sharing option, also add option to copy link of article
+also add a new TL:DR before start of any section 
+also add option to Summarize with: ChatGPT, Claude, Gemini, Grok Copilot option
+
+also add "Also Read" options in between of posts
+also add Further Reading feature after the Conclusion section
+then option to share article  
+then Keywords section
+then Next and Previous Post (fix plz link is not working plz /BharatByDay is missing, so it goes 404 error).
+then Copyright & Disclaimer section plz
+then Author Box
+then Related Articles section
+then Comments section
+
+
+also increase the width of post content, also increease font size by deafult.
+also change the font of post, to make it readable, 
+also do a complete image SEO of complete website
+
+
+
+
+
+internal links:
+link our other posts
+

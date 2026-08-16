@@ -2,7 +2,7 @@
 layout: home
 ---
 
-<p class="hero-tagline">One unique spot in India to explore, every single day.</p>
+{% include hero.html %}
 
 Welcome to **भारतByDay**, your daily compass to the spectacular, the unseen, and the offbeat corners of India. From the misty coffee plantations of Chikmagalur to the untouched hamlets of the Himalayas, India holds secrets that standard guidebooks miss.
 

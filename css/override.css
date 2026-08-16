@@ -20,6 +20,8 @@
   --bbd-radius-sm:      8px;
   --bbd-font-ui:        "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --bbd-font-serif:     "Source Serif 4", Georgia, "Times New Roman", serif;
+  --bbd-font-grotesk-text:    "Neue Haas Grotesk Text Pro", "Neue Haas Grotesk Display Pro", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --bbd-font-grotesk-display: "Neue Haas Grotesk Display Pro", "Neue Haas Grotesk Text Pro", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --bbd-font-mono:      "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
@@ -815,6 +817,7 @@ html[data-theme="light"] .theme-icon-sun {
 }
 
 .post-title {
+  font-family: var(--bbd-font-grotesk-display);
   font-size: 2.1rem;
   font-weight: 700;
   line-height: 1.2;
@@ -823,6 +826,7 @@ html[data-theme="light"] .theme-icon-sun {
 }
 
 .post-description {
+  font-family: var(--bbd-font-grotesk-text);
   font-size: 1.15rem;
   line-height: 1.55;
   color: var(--bbd-muted);
@@ -914,7 +918,7 @@ html[data-theme="light"] .theme-icon-sun {
 
 /* Post body typography */
 .post-content {
-  font-family: var(--bbd-font-serif);
+  font-family: var(--bbd-font-grotesk-text);
   font-size: calc(1.28rem * var(--fs, 1));
   line-height: 1.85;
   color: var(--bbd-text);
@@ -935,23 +939,26 @@ html[data-theme="light"] .theme-icon-sun {
 }
 
 .post-content h2 {
-  font-family: var(--bbd-font-ui);
+  font-family: var(--bbd-font-grotesk-display);
   font-size: 1.5rem;
   margin: 2.2rem 0 1rem;
   padding-bottom: 0.4rem;
   border-bottom: 1px solid var(--bbd-border);
+  scroll-margin-top: 96px;
 }
 
 .post-content h3 {
-  font-family: var(--bbd-font-ui);
+  font-family: var(--bbd-font-grotesk-display);
   font-size: 1.25rem;
   margin: 1.9rem 0 0.9rem;
+  scroll-margin-top: 96px;
 }
 
 .post-content h4 {
-  font-family: var(--bbd-font-ui);
+  font-family: var(--bbd-font-grotesk-display);
   font-size: 1.1rem;
   margin: 1.6rem 0 0.7rem;
+  scroll-margin-top: 96px;
 }
 
 .post-content ul,
@@ -1571,6 +1578,89 @@ pre.copyable:hover .copy-btn,
   color: var(--bbd-saffron);
 }
 
+#back-to-top svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ---------- Auto table of contents (left sidebar) ---------- */
+
+.post-toc {
+  display: none;
+}
+
+.post-toc.has-toc {
+  display: block;
+}
+
+.toc-title {
+  font-family: var(--bbd-font-grotesk-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bbd-saffron);
+  margin: 0 0 0.6rem;
+}
+
+.toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 1px solid var(--bbd-border);
+}
+
+.toc-item a {
+  display: block;
+  padding: 4px 12px;
+  border-left: 2px solid transparent;
+  margin-left: -1px;
+  color: var(--bbd-muted);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  text-decoration: none !important;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.toc-item a:hover {
+  color: var(--bbd-saffron);
+  border-left-color: var(--bbd-border-strong);
+}
+
+.toc-item.active > a {
+  color: var(--bbd-text);
+  font-weight: 600;
+  border-left-color: var(--bbd-saffron);
+}
+
+.toc-item.toc-h3 a {
+  padding-left: 24px;
+  font-size: 0.78rem;
+}
+
+@media (min-width: 1440px) {
+  .post-toc.has-toc {
+    position: fixed;
+    top: 120px;
+    left: max(24px, calc(50vw - 660px));
+    width: 220px;
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+    padding-right: 6px;
+  }
+}
+
+@media (max-width: 1439px) {
+  .post-toc.has-toc {
+    margin-bottom: 1.5rem;
+    padding: 1rem 1.2rem;
+    background: var(--bbd-bg-soft);
+    border: 1px solid var(--bbd-border);
+    border-left: 4px solid var(--bbd-saffron);
+    border-radius: var(--bbd-radius-sm);
+  }
+}
+
 /* ---------- Responsive tweaks ---------- */
 
 @media (max-width: 600px) {
@@ -1643,6 +1733,18 @@ pre.copyable:hover .copy-btn,
   cursor: pointer;
   transition: border-color 0.15s ease, color 0.15s ease;
 }
+
+.ctl-btn svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+}
+
+.ctl-btn .lucide-square { display: none; }
+
+.ctl-btn.is-speaking .lucide-square { display: inline-block; }
+
+.ctl-btn.is-speaking .lucide-volume-2 { display: none; }
 
 .ctl-btn:hover {
   border-color: var(--bbd-saffron);
@@ -1871,7 +1973,8 @@ pre.copyable:hover .copy-btn,
   .site-header, .site-footer, .site-nav, .breadcrumbs, .post-controls,
   .ai-summarize, .share-links, .related-posts, .further-reading,
   .post_navi, .post-legal, .comments, .author-box, .tldr-box,
-  .also-read-block, #also-read-pool, #reading-progress, #back-to-top {
+  .also-read-block, #also-read-pool, #reading-progress, #back-to-top,
+  .post-toc {
     display: none !important;
   }
 

@@ -1,77 +1,314 @@
-<footer class="site-footer h-card">
+<!-- ========================================================================
+     SITE FOOTER — "You can help shape the future"
+     ------------------------------------------------------------------------
+     Layered vector mountain landscape on a deep forest-teal base (#0A2929).
+       Top    : illustrative SVG scene (sun, gradient peaks, green valleys,
+                cyan river, floating leaves)
+       Middle : H2 headline + tagline, 3-column nav split by dividers,
+                coral CONTACT US CTA
+       Bottom : brand watermark (shield/tree + भारतByDay™), copyright micro
+                tagline, 1px rule, social icon tiles, tech credits
+     Self-contained: loads Poppins (geometric sans) + Tailwind Play CDN 3.4.16.
+     ======================================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<footer class="bbd-footer site-footer h-card" aria-label="Site footer">
   <data class="u-url" href="{{ "/" | relative_url }}"></data>
 
-  <div class="wrapper">
-    <div class="footer-col-wrapper">
+  <!-- ======================================================================
+       1. TOP ILLUSTRATIVE VECTOR CANVAS (mountain landscape)
+       ====================================================================== -->
+  <div class="bbd-footer-scene" aria-hidden="true">
+    <svg viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" role="presentation" focusable="false">
+      <defs>
+        <!-- soft golden sun -->
+        <radialGradient id="fSun" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" stop-color="#FFE3A8" stop-opacity="0.9"/>
+          <stop offset="0.6" stop-color="#F7C96B" stop-opacity="0.5"/>
+          <stop offset="1" stop-color="#E8A33D" stop-opacity="0"/>
+        </radialGradient>
+        <!-- warm geometric mountain gradients -->
+        <linearGradient id="gMtnA" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#F7C8A8"/>
+          <stop offset="0.5" stop-color="#F2A07B"/>
+          <stop offset="1" stop-color="#C96F4A"/>
+        </linearGradient>
+        <linearGradient id="gMtnB" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#F5B8C8"/>
+          <stop offset="0.45" stop-color="#E78CA6"/>
+          <stop offset="1" stop-color="#B25B6B"/>
+        </linearGradient>
+        <linearGradient id="gMtnC" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#E5A37F"/>
+          <stop offset="1" stop-color="#A85A38"/>
+        </linearGradient>
+        <!-- cyan river -->
+        <linearGradient id="gRiver" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#7DE3E0"/>
+          <stop offset="1" stop-color="#2BB6C4"/>
+        </linearGradient>
+        <!-- blend valley edge into the teal base -->
+        <linearGradient id="gFade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0F3A2B" stop-opacity="0"/>
+          <stop offset="1" stop-color="#0A2929"/>
+        </linearGradient>
+        <!-- stylized evergreen pines (two tones) -->
+        <g id="pine" fill="#07281D">
+          <path d="M0 -16 L7 0 L-7 0 Z"/>
+          <path d="M0 -8 L10 8 L-10 8 Z"/>
+          <path d="M0 0 L12 18 L-12 18 Z"/>
+        </g>
+        <g id="pineL" fill="#0B3426">
+          <path d="M0 -14 L6 0 L-6 0 Z"/>
+          <path d="M0 -7 L8 7 L-8 7 Z"/>
+          <path d="M0 0 L10 16 L-10 16 Z"/>
+        </g>
+        <!-- low-opacity floating leaf -->
+        <g id="leaf" opacity="0.45" fill="#6FCF97">
+          <path d="M0 0 C 4 -6 12 -7 16 -2 C 10 1 5 4 0 0 Z"/>
+        </g>
+      </defs>
 
-      <div class="footer-col footer-col-1">
-        <h2 class="footer-heading">{{ site.title | escape }}</h2>
-        <ul class="contact-list">
-          <li class="p-name">{{ site.author | escape }}</li>
-          {%- if site.email -%}
-          <li><a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-          {%- endif -%}
-          <li class="open-source">
-            <a href="https://github.com/f9xr/BharatByDay">
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.998.108-.776.418-1.306.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12c0-6.63-5.37-12-12-12z"/></svg>
-              <span>This site is open source</span>
-            </a>
-          </li>
-        </ul>
-      </div>
+      <!-- Background: sun rising behind smooth layered hills -->
+      <circle cx="720" cy="250" r="175" fill="url(#fSun)"/>
+      <circle cx="720" cy="250" r="96" fill="#F7C96B"/>
+      <circle cx="708" cy="236" r="62" fill="#FFE0A0" opacity="0.85"/>
 
-      <div class="footer-col footer-col-2">
-        <ul class="social-media-list">
-          <li>
-            <a href="https://github.com/f9xr" title="F9XR on GitHub" rel="me">
-              <svg class="svg-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.998.108-.776.418-1.306.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12c0-6.63-5.37-12-12-12z"/></svg>
-              <span class="username">GitHub</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://linkedin.com/company/f9xrteam" title="F9XR on LinkedIn" rel="me">
-              <svg class="svg-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-              <span class="username">LinkedIn</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://instagram.com/f9xrteam" title="F9XR on Instagram" rel="me">
-              <svg class="svg-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-              <span class="username">Instagram</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com/@QuarterlyLIV" title="F9XR on YouTube" rel="me">
-              <svg class="svg-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-              <span class="username">YouTube</span>
-            </a>
-          </li>
-          <li>
-            <a href="mailto:{{ site.email }}" title="Email the F9XR Editorial Team">
-              <svg class="svg-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 13.068L0 4.5v-.625C0 3.24.84 2.4 1.875 2.4h20.25C23.16 2.4 24 3.24 24 4.275v.225L12 13.068zM12 15.6L0 7.2v12.6C0 20.84.84 21.6 1.875 21.6h20.25c1.035 0 1.875-.76 1.875-1.8V7.2L12 15.6z"/></svg>
-              <span class="username">Email</span>
-            </a>
-          </li>
-        </ul>
-      </div>
+      <!-- Background hills (soft teal) -->
+      <path d="M0 320 C 220 262 420 258 620 300 C 800 336 960 330 1120 300 C 1280 272 1380 284 1440 308 L1440 600 L0 600 Z" fill="#123B3B" opacity="0.95"/>
 
-      <div class="footer-col footer-col-3">
-        <p class="footer-tagline">{{ site.tagline | escape }}</p>
-        <p class="footer-desc">{{ site.description | escape }}</p>
-      </div>
+      <!-- Middle layer: geometric mountain peaks (peach / pink / terracotta) -->
+      <polygon points="120,340 400,118 660,340" fill="url(#gMtnA)"/>
+      <polygon points="560,340 690,196 830,340" fill="url(#gMtnC)" opacity="0.75"/>
+      <polygon points="560,340 960,64 1360,340" fill="url(#gMtnB)"/>
+      <polygon points="1180,340 1340,210 1440,258 1440,340" fill="url(#gMtnC)" opacity="0.9"/>
 
-    </div>
+      <!-- Mid hills (deep green) -->
+      <path d="M0 400 C 240 356 420 372 640 400 C 840 426 1000 412 1180 388 C 1300 372 1380 378 1440 392 L1440 600 L0 600 Z" fill="#17493C"/>
 
-    <div class="footer-bottom">
-      <p>© 2026 <a href="{{ site.org_url }}" rel="publisher">F9XR Team</a> · Content licensed under <a href="https://creativecommons.org/licenses/by/4.0" rel="license">CC BY 4.0</a></p>
-      <p class="footer-links">
-        <a href="{{ "/archive.html" | relative_url }}">Archive</a> ·
-        <a href="{{ "/search/" | relative_url }}">Search</a> ·
-        <a href="{{ "/author/f9xr" | relative_url }}">Author</a> ·
-        <a href="{{ "/atom.xml" | relative_url }}">Atom</a> ·
-        <a href="{{ "/feed.xml" | relative_url }}">RSS</a>
-      </p>
-    </div>
+      <!-- Center element: winding cyan river toward the baseline dark curve -->
+      <path d="M710 250 C 756 292 700 320 730 360 C 760 400 706 424 736 468 C 758 500 736 540 756 600 L 822 600 C 800 540 822 500 800 468 C 770 424 826 400 796 360 C 766 320 820 292 774 250 Z" fill="url(#gRiver)" opacity="0.92"/>
+      <path d="M 726 296 C 742 330 726 352 736 384 C 748 420 738 442 748 476" fill="none" stroke="#BFF3F0" stroke-opacity="0.6" stroke-width="10" stroke-linecap="round"/>
 
+      <!-- Foreground layer: rolling green valley -->
+      <path d="M0 486 C 220 452 380 462 560 492 C 760 522 980 502 1180 476 C 1300 460 1380 466 1440 480 L1440 600 L0 600 Z" fill="#0F3A2B"/>
+
+      <!-- Pine silhouettes along the mid hill crest -->
+      <g transform="translate(90,386) scale(0.8)"><use href="#pineL"/></g>
+      <g transform="translate(180,380) scale(1)"><use href="#pineL"/></g>
+      <g transform="translate(300,378) scale(0.7)"><use href="#pineL"/></g>
+      <g transform="translate(430,388) scale(0.9)"><use href="#pineL"/></g>
+      <g transform="translate(920,400) scale(0.8)"><use href="#pineL"/></g>
+      <g transform="translate(1040,398) scale(1)"><use href="#pineL"/></g>
+      <g transform="translate(1150,392) scale(0.7)"><use href="#pineL"/></g>
+      <g transform="translate(1260,386) scale(0.9)"><use href="#pineL"/></g>
+      <g transform="translate(1370,390) scale(0.8)"><use href="#pineL"/></g>
+
+      <!-- Pine silhouettes along the foreground valley crest -->
+      <g transform="translate(60,470) scale(1.3)"><use href="#pine"/></g>
+      <g transform="translate(130,476) scale(1.5)"><use href="#pine"/></g>
+      <g transform="translate(210,482) scale(1.2)"><use href="#pine"/></g>
+      <g transform="translate(300,490) scale(1.4)"><use href="#pine"/></g>
+      <g transform="translate(1010,474) scale(1.3)"><use href="#pine"/></g>
+      <g transform="translate(1100,468) scale(1.5)"><use href="#pine"/></g>
+      <g transform="translate(1190,462) scale(1.2)"><use href="#pine"/></g>
+      <g transform="translate(1280,468) scale(1.4)"><use href="#pine"/></g>
+      <g transform="translate(1370,472) scale(1.1)"><use href="#pine"/></g>
+
+      <!-- Low-opacity leaves floating in the sky -->
+      <g transform="translate(190,120) rotate(20) scale(1.5)"><use href="#leaf"/></g>
+      <g transform="translate(500,84) rotate(-35) scale(1)"><use href="#leaf"/></g>
+      <g transform="translate(880,150) rotate(40) scale(1.3)"><use href="#leaf"/></g>
+      <g transform="translate(1150,96) rotate(-15) scale(1.7)"><use href="#leaf"/></g>
+      <g transform="translate(300,210) rotate(60) scale(0.9)"><use href="#leaf"/></g>
+      <g transform="translate(1250,180) rotate(10) scale(1.1)"><use href="#leaf"/></g>
+
+      <!-- Soft fade so the valley melts into the deep teal base -->
+      <rect x="0" y="460" width="1440" height="140" fill="url(#gFade)"/>
+    </svg>
   </div>
+
+  <!-- ======================================================================
+       2. DEEP FOREST-TEAL BASE
+       ====================================================================== -->
+  <div class="bbd-footer-base">
+    <div class="wrapper bbd-footer-inner">
+
+      <!-- Hero brand text: pinned to the left -->
+      <h2 class="bbd-footer-title">You can help<br>shape the future</h2>
+
+      <!-- Tagline + description -->
+      <div class="bbd-footer-about">
+        <p class="bbd-footer-tagline">{{ site.tagline | escape }}</p>
+        <p class="bbd-footer-desc">{{ site.description | escape }}</p>
+      </div>
+
+      <!-- ==================================================================
+           3. THREE-COLUMN NAV GRID + CTA
+           ================================================================== -->
+      <div class="bbd-footer-nav flex flex-col items-center gap-10 md:flex-row md:items-stretch md:gap-0">
+
+        <nav class="bbd-footer-cols grid w-full grid-cols-1 gap-8 text-center sm:grid-cols-3 md:w-auto md:flex-1 md:gap-0 md:text-left md:divide-x md:divide-white/10" aria-label="Footer navigation">
+          <div class="flex flex-col items-center gap-3 md:items-start md:px-8 md:first:pl-0">
+            <a class="bbd-footer-link text-sm font-medium uppercase tracking-wide" href="{{ "/" | relative_url }}"><span class="bbd-footer-pipe" aria-hidden="true">|</span> HOME</a>
+            <a class="bbd-footer-link text-sm font-medium uppercase tracking-wide" href="mailto:{{ site.email }}"><span class="bbd-footer-pipe" aria-hidden="true">|</span> Contact Us</a>
+          </div>
+          <div class="flex flex-col items-center gap-3 md:items-start md:px-8">
+            <a class="bbd-footer-link text-sm font-medium uppercase tracking-wide" href="{{ "/author/f9xr/" | relative_url }}"><span class="bbd-footer-pipe" aria-hidden="true">|</span> Our Authors</a>
+            <a class="bbd-footer-link text-sm font-medium uppercase tracking-wide" href="https://github.com/f9xr/BharatByDay" target="_blank" rel="noopener"><span class="bbd-footer-pipe" aria-hidden="true">|</span> Privacy policy</a>
+          </div>
+          <div class="flex flex-col items-center gap-3 md:items-start md:px-8">
+            <a class="bbd-footer-link text-sm font-medium uppercase tracking-wide" href="{{ "/author/f9xr/" | relative_url }}"><span class="bbd-footer-pipe" aria-hidden="true">|</span> Our mission</a>
+            <a class="bbd-footer-link text-sm font-medium uppercase tracking-wide" href="{{ "/archive.html" | relative_url }}"><span class="bbd-footer-pipe" aria-hidden="true">|</span> Archive</a>
+          </div>
+        </nav>
+
+        <!-- Right-aligned CONTACT US CTA -->
+        <div class="shrink-0 md:ml-10">
+          <a class="bbd-cta-btn inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm" href="mailto:{{ site.email }}">CONTACT US</a>
+        </div>
+      </div>
+
+      <!-- ==================================================================
+           4. THIN BOUNDARY DIVIDER
+           ================================================================== -->
+      <div class="bbd-footer-rule mt-14 md:mt-16" aria-hidden="true"></div>
+
+      <!-- ==================================================================
+           5. BRAND WATERMARK + SOCIAL ICON TILES
+           ================================================================== -->
+      <div class="bbd-footer-bottom flex flex-col items-center justify-between gap-8 pt-9 md:flex-row md:items-end">
+
+        <!-- Brand watermark -->
+        <div class="flex flex-col items-center gap-3 text-center md:items-start md:text-left">
+          <div class="flex items-center gap-2.5">
+            <!-- minimal green outline shield/tree logo -->
+            <svg class="bbd-brand-icon" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
+              <path d="M16 3 L28 8 V16 C28 24 22 29 16 31 C10 29 4 24 4 16 V8 Z" fill="none" stroke="#4CAF7D" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M16 10 C13 14 13 17 16 20 C19 17 19 14 16 10 Z" fill="#4CAF7D"/>
+              <path d="M16 20 V25" stroke="#4CAF7D" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span class="bbd-footer-brandname text-lg font-semibold tracking-tight text-white">भारतByDay™</span>
+          </div>
+          <p class="bbd-footer-copy text-xs leading-relaxed">
+            Copyright &copy; 2026 &middot; <span class="bbd-footer-micro">Small change. Big change.</span>
+          </p>
+        </div>
+
+        <!-- Social icon tiles -->
+        <ul class="bbd-footer-socials flex items-center gap-3">
+          <li>
+            <a class="bbd-social" href="https://x.com/{{ site.twitter.username }}" title="F9XR on X" rel="me noopener" target="_blank" aria-label="F9XR on X">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644z"/></svg>
+            </a>
+          </li>
+          <li>
+            <a class="bbd-social" href="https://instagram.com/{{ site.instagram_username }}" title="F9XR on Instagram" rel="me noopener" target="_blank" aria-label="F9XR on Instagram">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+          </li>
+          <li>
+            <a class="bbd-social" href="https://www.facebook.com/f9xrteam" title="F9XR on Facebook" rel="me noopener" target="_blank" aria-label="F9XR on Facebook">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+          </li>
+          <li>
+            <a class="bbd-social" href="https://linkedin.com/company/{{ site.linkedin_username }}" title="F9XR on LinkedIn" rel="me noopener" target="_blank" aria-label="F9XR on LinkedIn">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ==================================================================
+           6. TECH CREDITS
+           ================================================================== -->
+      <p class="bbd-footer-tech mt-9 text-center text-xs leading-relaxed">
+        Powered by <a href="https://jekyllrb.com/" target="_blank" rel="noopener">Jekyll</a> on
+        <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a>. Website designed by
+        <a href="{{ site.org_url }}" target="_blank" rel="noopener">F9XR Team</a>.
+      </p>
+
+    </div>
+  </div>
+
+  <!-- Tailwind CSS (Play CDN, pinned to 3.4.16) — layout utilities only,
+       no tailwind.config here so it never overrides the post/hero fonts. -->
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+
+  <style>
+    /* --- Canvas: deep slate-teal base, full-bleed --- */
+    .bbd-footer.site-footer { background: #0A2929; border-top: 0; margin: 0; padding: 0; }
+    .bbd-footer.site-footer .wrapper { border-top: 0; padding-top: 0; max-width: 1180px; }
+    .bbd-footer { font-family: "Poppins", ui-sans-serif, system-ui, sans-serif; color: #E9F3EF; }
+
+    /* --- Top illustrative scene --- */
+    .bbd-footer-scene svg { display: block; width: 100%; height: clamp(210px, 30vw, 430px); }
+    .bbd-footer-base { padding: clamp(3rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3rem); }
+
+    /* --- Hero brand text: crisp white, geometric sans --- */
+    .bbd-footer-title {
+      font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      color: #FFFFFF;
+    }
+
+    /* --- Tagline / description --- */
+    .bbd-footer-about { max-width: 46rem; margin-top: 1.4rem; }
+    .bbd-footer-tagline { color: #C8E3D9; font-weight: 500; font-size: 1.02rem; }
+    .bbd-footer-desc { color: #9DBEB4; font-size: 0.86rem; line-height: 1.7; margin-top: 0.5rem; }
+
+    /* --- Nav grid sits on its own row below the headline --- */
+    .bbd-footer-nav { margin-top: clamp(2.6rem, 5vw, 4rem); }
+
+    /* --- Link states: smooth opacity / colour shift --- */
+    .bbd-footer-link { color: #DCEBE5; transition: color 0.25s ease, opacity 0.25s ease; }
+    .bbd-footer-link .bbd-footer-pipe { color: #5C7A70; margin-right: 0.35rem; transition: color 0.25s ease; }
+    .bbd-footer-link:hover { color: #FFFFFF; }
+    .bbd-footer-link:hover .bbd-footer-pipe { color: #FF8D79; }
+
+    /* --- CTA button: coral peach, bold dark type --- */
+    .bbd-cta-btn {
+      background: #FF7A63;
+      color: #0A2929;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      box-shadow: 0 10px 30px -12px rgba(255, 122, 99, 0.55);
+      transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .bbd-cta-btn:hover { background: #FF8D79; transform: translateY(-2px); box-shadow: 0 14px 34px -12px rgba(255, 122, 99, 0.7); }
+
+    /* --- Thin boundary divider --- */
+    .bbd-footer-rule { height: 1px; background: rgba(255, 255, 255, 0.14); }
+
+    /* --- Brand watermark / copyright --- */
+    .bbd-footer-copy { color: #8FB0A6; }
+    .bbd-footer-micro { color: #6F938A; }
+
+    /* --- Social icon tiles: crisp white on subtle tiles --- */
+    .bbd-social {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.65rem;
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: background 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+    }
+    .bbd-social:hover { background: rgba(255, 255, 255, 0.16); border-color: rgba(255, 255, 255, 0.3); transform: translateY(-2px); }
+
+    /* --- Tech credits --- */
+    .bbd-footer-tech { color: #8FB0A6; }
+    .bbd-footer-tech a { color: #C7E0D6; text-decoration: underline; text-underline-offset: 3px; transition: color 0.25s ease; }
+    .bbd-footer-tech a:hover { color: #FFFFFF; }
+  </style>
 </footer>

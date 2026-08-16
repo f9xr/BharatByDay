@@ -87,7 +87,7 @@
     });
   }
   wireCopyLink(document.getElementById('share-copy-link'), document.getElementById('share-copy-label'));
-  wireCopyLink(document.getElementById('post-copy-link'), document.getElementById('post-copy-link'));
+  wireCopyLink(document.getElementById('post-copy-link'), document.getElementById('post-copy-label'));
 
   /* ---------- Font size controls ---------- */
 
@@ -116,13 +116,16 @@
 
   var listenBtn = document.getElementById('listen-btn');
   if (listenBtn) {
+    var listenLabel = listenBtn.querySelector('.listen-label');
     if ('speechSynthesis' in window) {
       var speaking = false;
-      var resetListen = function () {
-        speaking = false;
-        listenBtn.textContent = '\uD83D\uDD0A Listen';
-        listenBtn.setAttribute('aria-pressed', 'false');
+      var setListenState = function (on) {
+        speaking = on;
+        listenBtn.classList.toggle('is-speaking', on);
+        if (listenLabel) listenLabel.textContent = on ? 'Stop' : 'Listen';
+        listenBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
       };
+      var resetListen = function () { setListenState(false); };
       listenBtn.addEventListener('click', function () {
         var content = document.querySelector('.post-content');
         if (!content) return;
@@ -138,9 +141,7 @@
         utter.onerror = resetListen;
         window.speechSynthesis.cancel();
         window.speechSynthesis.speak(utter);
-        speaking = true;
-        listenBtn.textContent = '\u23F9 Stop';
-        listenBtn.setAttribute('aria-pressed', 'true');
+        setListenState(true);
       });
     } else {
       listenBtn.disabled = true;
@@ -187,5 +188,86 @@
       });
     }
     pool.parentNode.removeChild(pool);
+  }
+
+  /* ---------- Auto table of contents (left sidebar) ---------- */
+
+  var toc = document.getElementById('post-toc');
+  var tocContent = document.querySelector('.post-content');
+  if (toc && tocContent && !toc.querySelector('.toc-list')) {
+    var tocHeadings = tocContent.querySelectorAll('h2, h3');
+    if (tocHeadings.length > 1) {
+      var tocList = document.createElement('ol');
+      tocList.className = 'toc-list';
+      var slugCount = {};
+      tocHeadings.forEach(function (h) {
+        if (!h.id) {
+          var base = slugify(h.textContent);
+          var slug = base;
+          slugCount[base] = (slugCount[base] || 0) + 1;
+          if (slugCount[base] > 1) slug = base + '-' + slugCount[base];
+          h.id = slug;
+        }
+        var li = document.createElement('li');
+        li.className = 'toc-item toc-' + h.tagName.toLowerCase();
+        var a = document.createElement('a');
+        a.href = '#' + h.id;
+        a.textContent = h.textContent;
+        a.dataset.target = h.id;
+        li.appendChild(a);
+        tocList.appendChild(li);
+      });
+
+      var tocTitle = document.createElement('p');
+      tocTitle.className = 'toc-title';
+      tocTitle.textContent = 'On this page';
+      toc.appendChild(tocTitle);
+      toc.appendChild(tocList);
+      toc.classList.add('has-toc');
+
+      var tocLinks = toc.querySelectorAll('.toc-item a');
+      var setActiveToc = function (id) {
+        tocLinks.forEach(function (a) {
+          a.parentNode.classList.toggle('active', a.dataset.target === id);
+        });
+      };
+      if ('IntersectionObserver' in window) {
+        var visible = {};
+        var tocIo = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            visible[entry.target.id] = entry.isIntersecting;
+          });
+          var current = null;
+          tocHeadings.forEach(function (h) {
+            if (visible[h.id]) current = h.id;
+          });
+          if (current) setActiveToc(current);
+        }, { rootMargin: '-80px 0px -70% 0px', threshold: 0 });
+        tocHeadings.forEach(function (h) { tocIo.observe(h); });
+      }
+    } else {
+      toc.style.display = 'none';
+    }
+  }
+
+  /* ---------- Lucide icons ---------- */
+
+  function initIcons() {
+    if (window.lucide) {
+      lucide.createIcons();
+      return true;
+    }
+    return false;
+  }
+  if (!initIcons()) {
+    window.addEventListener('load', initIcons);
+  }
+
+  function slugify(text) {
+    return String(text || '').toLowerCase()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
   }
 })();
