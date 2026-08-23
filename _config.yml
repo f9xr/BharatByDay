@@ -66,6 +66,7 @@ exclude:
   - mindmap-skill.skill
   - all-urls.txt
   - README.md
+  - seo_audit_report.md
 
 #########################################################################################
 ######### Nothing below needs to be changed (unless you know what you're doing) #########

@@ -181,7 +181,7 @@ pre code {
 }
 
 .wrapper {
-  max-width: 860px;
+  max-width: 1080px;
 }
 
 /* India tricolour strip across the top of the header */
@@ -776,7 +776,7 @@ html[data-theme="light"] .theme-icon-sun {
 /* ---------- Post layout ---------- */
 
 .post {
-  max-width: 860px;
+  max-width: 1080px;
   margin: 0 auto;
 }
 
