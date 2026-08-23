@@ -156,7 +156,7 @@ The best time to visit is between October and March, when temperatures are coole
 
 ## Conclusion
 
-Chand Baori is proof that some of the most impressive engineering achievements don't need modern technology to leave people in awe centuries later. It's a site that rewards curiosity, whether you're interested in ancient architecture, water conservation history, or simply want to see something that genuinely looks unlike anything else in the world.
+Chand Baori is proof that some of the most impressive engineering achievements don't need modern technology to leave people in awe centuries later. It's a site that rewards curiosity, whether you're interested in ancient architecture, water conservation history, or simply want to see something that looks unlike anything else in the world.
 
 Craving more hidden India? Keep exploring with our guides to the [Dzüko Valley flower meadows in Nagaland]({{ "/2026/08/02/dzuko-valley-the-flower-meadow.html" | relative_url }}) and [Chikmagalur, Karnataka's coffee country]({{ "/chikmagalur-coffee-land-karnataka-guide" | relative_url }}).
 

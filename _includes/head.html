@@ -28,7 +28,7 @@
   <script src="https://unpkg.com/lucide@1.31.0/dist/umd/lucide.min.js" defer></script>
 
   {% feed_meta %}
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }} — RSS Feed" href="{{ "/feed.xml" | relative_url }}">
+  <link rel="alternate" type="application/atom+xml" title="{{ site.title | escape }} — RSS Feed" href="{{ "/atom.xml" | relative_url }}">
 
   {% if jekyll.environment == 'production' and site.google_analytics -%}
   <!-- Begin Google Analytics -->

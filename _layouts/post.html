@@ -147,16 +147,16 @@ layout: default
 
     <!-- ======================================================================
          4. ASYMMETRICAL 2-COLUMN LAYOUT
-         Left sidebar ~25% (sticky author + TOC + newsletter)
-         Right column  ~75% (reading pipeline)
+         Left sidebar ~30% (sticky author + TOC rail)
+         Right column  ~70% (reading pipeline)
          ====================================================================== -->
-    <div class="mt-12 grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,4fr)_minmax(0,9fr)] lg:gap-12">
+    <div class="mt-12 grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,10fr)] lg:gap-12">
 
       <!-- ====================================================================
            LEFT SIDEBAR — on mobile it stacks below the article text
            ==================================================================== -->
       <aside class="order-last min-w-0 lg:order-first" aria-label="Article sidebar">
-        <div class="space-y-8 lg:sticky lg:top-28">
+        <div class="bbd-rail space-y-8">
 
           <!-- ----- Author block ----- -->
           <section class="rounded-2xl border border-zinc-800 bg-[#0c0c0d] p-6" aria-label="About the author">
@@ -184,22 +184,6 @@ layout: default
             <!-- Table of contents is generated automatically from the
                  <h2>/<h3> headings in .post-content by the inline script below. -->
           </nav>
-
-          <!-- ----- Newsletter capture (wire to a real backend when you have one) ----- -->
-          <section class="rounded-2xl border border-zinc-800 bg-gradient-to-b from-[#0f0f11] to-[#0a0a0b] p-5" aria-label="Newsletter">
-            <p class="font-display text-sm font-bold text-zinc-100">One hidden gem, every day</p>
-            <p class="mt-1 text-xs leading-relaxed text-zinc-500">Subscribe and we will send each day&rsquo;s spot straight to your inbox.</p>
-            <form class="mt-4" action="mailto:{{ site.email }}" method="post" enctype="text/plain">
-              <label class="sr-only" for="post-newsletter-email">Email address</label>
-              <div class="flex gap-2">
-                <input id="post-newsletter-email" name="email" type="email" required autocomplete="email"
-                       placeholder="you@example.com"
-                       class="w-full min-w-0 flex-1 rounded-lg border border-zinc-800 bg-black px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600 focus:border-[#ff9933] focus:outline-none">
-                <button type="submit"
-                        class="shrink-0 rounded-lg bg-[#ff9933] px-3.5 py-2 text-sm font-semibold text-black transition-opacity hover:opacity-90">Subscribe</button>
-              </div>
-            </form>
-          </section>
         </div>
       </aside>
 
@@ -207,7 +191,7 @@ layout: default
            RIGHT READING COLUMN
            ==================================================================== -->
       <div class="order-first min-w-0 lg:order-last">
-        <div class="mx-auto w-full max-w-[1000px]">
+        <div class="mx-auto w-full max-w-[1200px]">
 
           <!-- ----- Article tools (font size, listen, PDF, copy link) ----- -->
           <div class="post-controls" role="toolbar" aria-label="Article tools">
@@ -439,9 +423,9 @@ layout: default
      and footer on post pages.
      ======================================================================== -->
 <style>
-  /* Widen the reading canvas on post pages (pure black, long-form focused) */
+   /* Widen the reading canvas on post pages (pure black, long-form focused) */
   @supports selector(:has(*)) {
-    .page-content .wrapper:has(.post-tailwind) { max-width: 1400px; }
+    .page-content .wrapper:has(.post-tailwind) { max-width: 1560px; }
   }
 
   .post-tailwind { font-family: "Neue Haas Grotesk Text Pro", "Neue Haas Grotesk Display Pro", "Inter", ui-sans-serif, system-ui, sans-serif; }

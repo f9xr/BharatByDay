@@ -25,6 +25,23 @@
     });
   }
 
+  /* ---------- Navbar: hide on scroll down, reveal on scroll up ---------- */
+
+  var header = document.querySelector('.site-header');
+  if (header) {
+    var lastY = window.scrollY;
+    window.addEventListener('scroll', function () {
+      var y = window.scrollY;
+      if (Math.abs(y - lastY) < 4) return;
+      if (y > lastY && y > 140) {
+        header.classList.add('nav-hidden');
+      } else {
+        header.classList.remove('nav-hidden');
+      }
+      lastY = y;
+    }, { passive: true });
+  }
+
   document.querySelectorAll('pre').forEach(function (pre) {
     var block = pre.querySelector('code');
     if (!block) return;
